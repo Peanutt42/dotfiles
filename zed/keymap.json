@@ -1,0 +1,9 @@
+[
+	{
+		"bindings": {
+			"ctrl-shift-t": "workspace::ToggleBottomDock",
+			"f5": "task::Rerun",
+			"ctrl-f5": "task::Spawn"
+		}
+	}
+]

@@ -1,0 +1,11 @@
+[
+	{
+		"label": "Run release (package: $ZED_CUSTOM_RUST_PACKAGE)",
+		"command": "cargo",
+		"args": ["run", "--release", "-p", "$ZED_CUSTOM_RUST_PACKAGE"],
+		"show_summary": false,
+		"allow_concurrent_runs": true,
+		"reveal": "always",
+		"hide": "on_success"
+	}
+]
