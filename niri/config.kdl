@@ -118,4 +118,5 @@ include "dms/alttab.kdl"
 include "dms/binds.kdl"
 
 include "monitors.kdl"
+include "dms/cursor.kdl"
 include "dms/outputs.kdl"
