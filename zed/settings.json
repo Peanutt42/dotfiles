@@ -1,5 +1,8 @@
 {
-	"git_panel": {
+	"edit_predictions": {
+  "provider": "zed"
+ },
+ "git_panel": {
   "dock": "right"
  },
  "project_panel": {
@@ -8,9 +11,6 @@
  "disable_ai": true,
  "vim_mode": false,
 	"icon_theme": "Material Icon Theme",
-	"features": {
-		"edit_prediction_provider": "zed"
-	},
 	"ssh_connections": [
   {
    "host": "peterspi.local",

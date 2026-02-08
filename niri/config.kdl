@@ -22,6 +22,8 @@ input {
     touchpad {
     	tap
 
+     	accel-profile "adaptive"
+
     	natural-scroll
     }
     mouse {
