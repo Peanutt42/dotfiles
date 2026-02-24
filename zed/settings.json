@@ -1,106 +1,121 @@
 {
 	"edit_predictions": {
-  "provider": "zed"
- },
- "git_panel": {
-  "dock": "right"
- },
- "project_panel": {
-  "dock": "right"
- },
- "disable_ai": true,
- "vim_mode": false,
+		"provider": "zed",
+	},
+	"git_panel": {
+		"dock": "right",
+	},
+	"project_panel": {
+		"dock": "right",
+	},
+	"disable_ai": false,
+	"vim_mode": false,
 	"icon_theme": "Material Icon Theme",
 	"ssh_connections": [
-  {
-   "host": "peterspi.local",
-   "username": "peter",
-   "args": [],
-   "projects": [
-    {
-     "paths": [
-      "~/github/project_tracker"
-     ]
-    }
-   ]
-  },
-  {
-   "host": "login.informatik.uni-ulm.de",
-   "username": "ph51",
-   "args": [],
-   "projects": [
-    {
-     "paths": [
-      "/home/ph51"
-     ]
-    },
-    {
-     "paths": [
-      "/home/ph51/github/uni_aufgaben/./"
-     ]
-    }
-   ]
-  }
- ],
+		{
+			"host": "peterspi.local",
+			"username": "peter",
+			"args": [],
+			"projects": [
+				{
+					"paths": [
+						"~/github/project_tracker"
+					],
+				},
+			],
+		},
+		{
+			"host": "login.informatik.uni-ulm.de",
+			"username": "ph51",
+			"args": [],
+			"projects": [
+				{
+					"paths": [
+						"/home/ph51"
+					],
+				},
+				{
+					"paths": [
+						"/home/ph51/github/uni_aufgaben/./"
+					],
+				},
+			],
+		},
+		{
+			"host": "raspissh.peternhennig.de",
+			"username": "peter",
+			"args": [],
+			"projects": [
+				{
+					"paths": [
+						"/home/peter/github/project_tracker/./"
+					],
+				},
+			],
+		},
+	],
 	"auto_install_extensions": {
 		"toml": true,
 		"dockerfile": true,
 		"git-firefly": true,
 		"material-icon-theme": true,
-		"neocmake": true
+		"neocmake": true,
 	},
 	"theme": "GitHub Dark Contrast",
 	"telemetry": {
 		"diagnostics": false,
-		"metrics": false
+		"metrics": false,
 	},
 	"git": {
 		"inline_blame": {
-			"enabled": false
-		}
+			"enabled": false,
+		},
 	},
 	"terminal": {
 		"font_family": "JetBrainsMono Nerd Font Mono",
-		"cursor_shape": "bar"
+		"cursor_shape": "bar",
 	},
 	"lsp": {
 		"rust-analyzer": {
 			"initialization_options": {
 				"check": {
-					"command": "clippy" // rust-analyzer.check.command (default: "check")
-				}
-			}
-		}
+					"command": "clippy", // rust-analyzer.check.command (default: "check")
+				},
+			},
+		},
 	},
 	"languages": {
 		"Haskell": {
-   "prettier": {
-    "allowed": false
-   }
-  },
-  "CMake": {
-			"format_on_save": "off"
+			"prettier": {
+				"allowed": false,
+			},
+		},
+		"CMake": {
+			"format_on_save": "off",
 		},
 		"C++": {
 			"inlay_hints": {
-				"enabled": true
-			}
+				"enabled": true,
+			},
 		},
 		"Kotlin": {
-			"language_servers": ["kotlin-lsp", "!kotlin-language-server"]
-		}
+			"language_servers": [
+				"kotlin-lsp",
+				"!kotlin-language-server"
+			],
+		},
 	},
 	"tab_bar": {
-		"show_nav_history_buttons": false
+		"show_nav_history_buttons": false,
 	},
 	"tabs": {
 		"file_icons": true,
 		"git_status": true,
 		"show_close_button": "always",
-		"show_diagnostics": "all"
+		"show_diagnostics": "all",
 	},
 	"title_bar": {
-		"show_branch_icon": true
+		"show_branch_icon": true,
 	},
 	"buffer_font_family": "JetBrainsMono Nerd Font",
 	"ui_font_family": "JetBrainsMono Nerd Font Propo",
@@ -109,26 +124,29 @@
 	"ui_font_size": 16,
 	"buffer_font_size": 16,
 	"inlay_hints": {
-		"enabled": true
+		"enabled": true,
 	},
-	"wrap_guides": [80],
+	"wrap_guides": [
+		80
+	],
 	"auto_signature_help": true,
 	"show_signature_help_after_edits": true,
 	"format_on_save": "on",
 	"collaboration_panel": {
-		"button": false
+		"dock": "left",
+		"button": false,
 	},
 	"agent": {
-		"button": false
+		"button": false,
 	},
 	"diagnostics": {
 		"include_warnings": true,
 		"inline": {
-			"enabled": true
-		}
+			"enabled": true,
+		},
 	},
 	"outline_panel": {
+		"button": true,
 		"dock": "right",
-  "button": false
-	}
+	},
 }

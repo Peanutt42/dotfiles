@@ -43,6 +43,12 @@ overview {
     workspace-shadow {
     }
 }
+layout {
+	shadow {
+		on
+		spread 15
+	}
+}
 
 
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"

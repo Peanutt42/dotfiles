@@ -18,13 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugins
 require("lazy").setup({
   {
-    "josuegaleas/jay",
-    lazy = false, -- load immediately
-    config = function()
-      vim.cmd.colorscheme("jay")
-    end
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate"
   },
@@ -53,9 +46,26 @@ require("lazy").setup({
   },
   {
     "mrcjkb/haskell-tools.nvim",
-    version = "^6", -- Recommended
+    version = "^6", -- Recommended
     lazy = false, -- This plugin is already lazy
-  }
+  },
+  {
+	"akinsho/toggleterm.nvim",
+	version = "*",
+	config = true,
+  },
+  {
+    name = "github-dark-contrast",
+    dir = vim.fn.stdpath("config"),
+    lazy = false,
+    priority = 1000,
+	config = function()
+      require("github_dark_contrast").setup()
+    end,
+  },
+}, {
+  ui = { border = "rounded" },
+  checker = { enabled = false },
 })
 
 -- Basics
@@ -135,11 +145,12 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 vim.keymap.set("n", "<leader>b", function() vim.cmd [[Neotree position=right toggle]] end)
+vim.keymap.set("n", "<leader>t", function() vim.cmd [[ToggleTerm]] end)
 
 
-
-
-
+-- inline diagnostic error messages
+vim.diagnostic.enable()
+vim.diagnostic.config({ virtual_text = true, virtual_lines = true, update_in_insert = true })
 
 
 
