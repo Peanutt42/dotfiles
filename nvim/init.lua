@@ -81,6 +81,7 @@ vim.o.smartindent = true
 vim.cmd([[
   filetype plugin indent on
 ]])
+vim.opt.whichwrap = "b,s,h,l,<,>,[,]"
 
 -- LSP setup
 -- Mason setup
