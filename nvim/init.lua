@@ -166,6 +166,13 @@ end
 
 
 vim.api.nvim_create_augroup("RustTabs", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePre", {
+	group = "RustTabs",
+	pattern = "*.rs",
+	callback = function()
+		vim.lsp.buf.format({ async = false })
+	end,
+})
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "rust",
