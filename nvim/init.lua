@@ -156,11 +156,23 @@ local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 vim.lsp.enable('nixd')
 
 
--- rust-analyzer cant access system cargo
 if vim.lsp.config.rust_analyzer then
-  vim.lsp.config.rust_analyzer.cmd = { "rust-analyzer" } -- skip cargo root detection
-  vim.lsp.config.rust_analyzer.capabilities = cmp_capabilities;
+	-- rust-analyzer cant access system cargo
+	vim.lsp.config.rust_analyzer.cmd = { "rust-analyzer" } -- skip cargo root detection
+	vim.lsp.config.rust_analyzer.capabilities = cmp_capabilities;
 end
+-- set rust_analyzer to use clippy instead of check
+vim.lsp.config('rust_analyzer', {
+  settings = {
+    ['rust-analyzer'] = {
+		checkOnSave = true,
+		check = {
+			command = "clippy",
+		},
+    },
+  },
+})
+vim.lsp.enable('rust_analyzer')
 
 
 
