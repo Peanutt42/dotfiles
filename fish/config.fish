@@ -37,3 +37,13 @@ zoxide init fish --cmd cd | source
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/peter/.ghcup/bin # ghcup-env
 # Added by Quartus Prime software
 export SALT_LICENSE_FILE="$SALT_LICENSE_FILE;/home/peter/.altera.quartus/questa_lic.dat"
+
+# fixes problem with `nix develop` where it runs bash instead of fish
+# Solution: replace `nix develop` with `nix develop --command fish`
+function nix
+    if test (count $argv) -ge 1 -a "$argv[1]" = "develop"
+        command nix $argv --command fish
+    else
+        command nix $argv
+    end
+end
