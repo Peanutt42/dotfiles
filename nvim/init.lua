@@ -96,6 +96,11 @@ require("lazy").setup({
       require("github_dark_contrast").setup()
     end,
   },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {}
+  }
 }, {
   ui = { border = "rounded" },
   checker = { enabled = false },
@@ -157,18 +162,18 @@ vim.lsp.enable('nixd')
 
 
 if vim.lsp.config.rust_analyzer then
-	-- rust-analyzer cant access system cargo
-	vim.lsp.config.rust_analyzer.cmd = { "rust-analyzer" } -- skip cargo root detection
-	vim.lsp.config.rust_analyzer.capabilities = cmp_capabilities;
+  -- rust-analyzer cant access system cargo
+  vim.lsp.config.rust_analyzer.cmd = { "rust-analyzer" } -- skip cargo root detection
+  vim.lsp.config.rust_analyzer.capabilities = cmp_capabilities;
 end
 -- set rust_analyzer to use clippy instead of check
 vim.lsp.config('rust_analyzer', {
   settings = {
     ['rust-analyzer'] = {
-		checkOnSave = true,
-		check = {
-			command = "clippy",
-		},
+      checkOnSave = true,
+      check = {
+        command = "clippy",
+      },
     },
   },
 })
@@ -179,20 +184,20 @@ vim.lsp.enable('rust_analyzer')
 
 vim.api.nvim_create_augroup("RustTabs", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", {
-	group = "RustTabs",
-	pattern = "*.rs",
-	callback = function()
-		vim.lsp.buf.format({ async = false })
-	end,
+  group = "RustTabs",
+  pattern = "*.rs",
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "rust",
-    callback = function()
-        vim.opt_local.expandtab = false
-        vim.opt_local.tabstop = 4
-        vim.opt_local.softtabstop = 4
-        vim.opt_local.shiftwidth = 4
+  pattern = "rust",
+  callback = function()
+	vim.opt_local.expandtab = false
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.shiftwidth = 4
     end,
 })
 
@@ -212,6 +217,16 @@ vim.keymap.set("n", "<leader>t", function() vim.cmd [[ToggleTerm]] end)
 vim.diagnostic.enable()
 vim.diagnostic.config({ virtual_text = true, virtual_lines = true, update_in_insert = true })
 
+
+require("ibl").setup({
+  indent = { char = "▏" },
+  scope = {
+    enabled = true,
+    include = {
+      node_type = { ["*"] = { "*" } }
+    }
+  },
+})
 
 
 -- haskell
