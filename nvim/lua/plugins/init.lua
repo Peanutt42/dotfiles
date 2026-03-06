@@ -3,6 +3,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate"
 	},
+	"folke/neoconf.nvim",
 	"neovim/nvim-lspconfig",
 	{
 		"williamboman/mason.nvim",

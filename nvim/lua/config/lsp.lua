@@ -1,3 +1,5 @@
+require("neoconf").setup()
+
 -- LSP setup
 -- Mason setup
 require("mason").setup()
