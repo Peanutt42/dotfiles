@@ -1,3 +1,7 @@
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Basics
 vim.o.number = true
 vim.o.relativenumber = false
@@ -11,7 +15,10 @@ vim.o.smartindent = true
 vim.cmd([[
   filetype plugin indent on
 ]])
-vim.opt.whichwrap = "b,s,h,l,<,>,[,]"
+vim.o.colorcolumn = "80"
+vim.o.whichwrap = "b,s,h,l,<,>,[,]"
+vim.o.hlsearch = false
+vim.o.incsearch = true
 
 
 -- inline diagnostic error messages
