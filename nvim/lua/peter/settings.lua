@@ -23,7 +23,11 @@ vim.o.incsearch = true
 
 -- inline diagnostic error messages
 vim.diagnostic.enable()
-vim.diagnostic.config({ virtual_text = true, virtual_lines = true, update_in_insert = true })
+vim.diagnostic.config({
+	virtual_text = true,
+	virtual_lines = true,
+	update_in_insert = true
+})
 
 -- Colorscheme: github_dark_contrast
 vim.cmd("colorscheme github_dark_contrast")
