@@ -33,3 +33,12 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		end
 	end,
 })
+
+-- short yank highlight animation
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 150 })
+	end,
+})
+-- make highlight color bright orange
+vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#ff6600", fg = "#ffffff" })
