@@ -3,7 +3,7 @@
 -- Compatible with Neovim 0.8+
 
 
-colors = {
+local colors = {
 	-- Base
 	bg         = "#050505",
 	bg_dark    = "#070707",
@@ -42,8 +42,9 @@ colors = {
 	syn_tag      = "#22b72f",
 	syn_title    = "#ff9a44",
 	syn_type     = "#79c0ff",
-	syn_variable = "#ff9a44",
+	syn_variable = "#f4f4f4";
 	syn_variable_special = "#79c0ff",
+	syn_property = "#ff9a44",
 
 	-- Diagnostics / Git
 	error   = "#f85149",
@@ -206,7 +207,7 @@ hi(0, "Todo",            { fg = c.bg, bg = c.info, bold = true })
 hi(0, "@variable",               { fg = c.syn_variable })
 hi(0, "@variable.builtin",       { fg = c.syn_variable_special })
 hi(0, "@variable.parameter",     { fg = c.syn_variable })
-hi(0, "@variable.member",        { fg = c.syn_variable })
+hi(0, "@variable.member",        { fg = c.syn_property })
 
 -- Constants
 hi(0, "@constant",               { fg = c.syn_constant })
@@ -286,19 +287,19 @@ hi(0, "@attribute",              { fg = c.syn_label })
 -- ────────────────────────────────────────────────
 hi(0, "@lsp.type.class",         { fg = c.syn_type })
 hi(0, "@lsp.type.comment",       { fg = c.syn_comment, italic = true })
-hi(0, "@lsp.type.decorator",     { fg = c.syn_label })
+hi(0, "@lsp.type.decorator",     { fg = c.syn_keyword })
 hi(0, "@lsp.type.enum",          { fg = c.syn_type })
 hi(0, "@lsp.type.enumMember",    { fg = c.syn_constant })
 hi(0, "@lsp.type.function",      { fg = c.syn_function })
 hi(0, "@lsp.type.interface",     { fg = c.syn_type })
 hi(0, "@lsp.type.keyword",       { fg = c.syn_keyword })
-hi(0, "@lsp.type.macro",         { fg = c.syn_variable })
+hi(0, "@lsp.type.macro",         { fg = c.syn_function })
 hi(0, "@lsp.type.method",        { fg = c.syn_function })
 hi(0, "@lsp.type.namespace",     { fg = c.syn_type })
 hi(0, "@lsp.type.number",        { fg = c.syn_number })
 hi(0, "@lsp.type.operator",      { fg = c.fg })
 hi(0, "@lsp.type.parameter",     { fg = c.syn_variable })
-hi(0, "@lsp.type.property",      { fg = c.syn_variable })
+hi(0, "@lsp.type.property",      { fg = c.syn_property })
 hi(0, "@lsp.type.string",        { fg = c.syn_string })
 hi(0, "@lsp.type.struct",        { fg = c.syn_type })
 hi(0, "@lsp.type.type",          { fg = c.syn_type })
