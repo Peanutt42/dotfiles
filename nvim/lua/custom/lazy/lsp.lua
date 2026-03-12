@@ -1,90 +1,65 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		"williamboman/mason.nvim",
+		{
+			"williamboman/mason.nvim",
+			opts = {},
+		},
 		"williamboman/mason-lspconfig.nvim",
-		"hrsh7th/nvim-cmp",
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-path",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		"L3MON4D3/LuaSnip",
-		"saadparwaiz1/cmp_luasnip",
 	},
 	config = function()
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-		require("mason").setup()
-
-		require("mason-lspconfig").setup({
-			ensure_installed = { "lua_ls", "rust_analyzer", "ts_ls", "tailwindcss" },
-			handlers = {
-				function(server_name)
-					local config = {
-						capabilities = capabilities,
+		---@type table<string, vim.lsp.Config>
+		local servers = {
+			rust_analyzer = {
+				settings = {
+					['rust-analyzer'] = {
+						checkOnSave = true,
+						check = {
+							command = "clippy",
+						},
 					}
-
-					-- Special settings for Lua
-					if server_name == "lua_ls" then
-						config.settings = {
-							Lua = {
-								diagnostics = { globals = { "vim" } },
-							},
-						}
+				}
+			},
+			lua_ls = {
+				on_init = function(client)
+					if client.workspace_folders then
+						local path = client.workspace_folders[1].name
+						if path ~= vim.fn.stdpath 'config' and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc')) then return end
 					end
 
-					vim.lsp.config[server_name] = config
-					vim.lsp.start(config)
+					client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+						runtime = {
+							version = 'LuaJIT',
+							path = { 'lua/?.lua', 'lua/?/init.lua' },
+						},
+						workspace = {
+							checkThirdParty = false,
+							-- NOTE: this is a lot slower and will cause issues when working on your own configuration.
+							--  See https://github.com/neovim/nvim-lspconfig/issues/3189
+							library = vim.tbl_extend('force', vim.api.nvim_get_runtime_file('', true), {
+								'${3rd}/luv/library',
+								'${3rd}/busted/library',
+							}),
+						},
+					})
 				end,
-			},
-		})
-
-		-- Autocomplete lsp setup
-		local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-		-- nixd lsp setup:
-		vim.lsp.enable('nixd')
-
-
-		if vim.lsp.config.rust_analyzer then
-			-- rust-analyzer cant access system cargo
-			vim.lsp.config.rust_analyzer.cmd = { "rust-analyzer" } -- skip cargo root detection
-			vim.lsp.config.rust_analyzer.capabilities = cmp_capabilities;
-		end
-		-- set rust_analyzer to use clippy instead of check
-		vim.lsp.config('rust_analyzer', {
-			settings = {
-				['rust-analyzer'] = {
-					checkOnSave = true,
-					check = {
-						command = "clippy",
-					},
+				settings = {
+					Lua = {},
 				},
 			},
-		})
-		vim.lsp.enable('rust_analyzer')
+		}
 
+		local ensure_installed = vim.tbl_keys(servers)
+		require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
-		local cmp = require("cmp")
-		cmp.setup({
-			snippet = {
-				expand = function(args)
-					require("luasnip").lsp_expand(args.body)
-				end,
-			},
-			mapping = cmp.mapping.preset.insert({
-				["<C-Space>"] = cmp.mapping.complete(),
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
-				["<Tab>"] = cmp.mapping.select_next_item(),
-				["<S-Tab>"] = cmp.mapping.select_prev_item(),
-			}),
-			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
-				{ name = "crates" },
-			}, {
-				{ name = "buffer" },
-				{ name = "path" },
-			}),
-		})
+		for name, server in pairs(servers) do
+			vim.lsp.config(name, server)
+			vim.lsp.enable(name)
+		end
+
+		-- nixd is seperate, installed through a system package
+		vim.lsp.enable("nixd")
 	end
 }

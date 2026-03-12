@@ -1,3 +1,4 @@
+-- display error messages as actual "notification" messages
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",

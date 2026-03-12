@@ -1,3 +1,4 @@
+-- custom super thin 80-char indication bar
 return {
 	"lukas-reineke/virt-column.nvim",
 	opts = {

@@ -1,6 +1,7 @@
+-- styles and auto hides the status line
 return {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+	'nvim-lualine/lualine.nvim',
+	dependencies = { 'nvim-tree/nvim-web-devicons' },
 	config = function()
 		-- Bubbles config for lualine
 		-- Author: lokesh-krishna

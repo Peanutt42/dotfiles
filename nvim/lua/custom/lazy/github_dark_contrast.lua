@@ -1,3 +1,4 @@
+-- Theme
 return {
 	"Peanutt42/github-dark-contrast-theme.nvim",
 	lazy = false,

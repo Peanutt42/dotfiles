@@ -2,10 +2,11 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Basics
 vim.o.number = true
-vim.o.relativenumber = false
+vim.o.relativenumber = true
 vim.o.termguicolors = true
+
+-- Indentation: Tabs
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
@@ -15,9 +16,11 @@ vim.o.smartindent = true
 vim.cmd([[
   filetype plugin indent on
 ]])
+
 vim.o.colorcolumn = "80"
 vim.o.whichwrap = "b,s,h,l,<,>,[,]"
-vim.o.hlsearch = false
+
+vim.o.hlsearch = true
 vim.o.incsearch = true
 
 

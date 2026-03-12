@@ -1,3 +1,4 @@
+-- Fuzzy file(/or anything) finder
 return {
 	"nvim-telescope/telescope.nvim",
 	config = function()

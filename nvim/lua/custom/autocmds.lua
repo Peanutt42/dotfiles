@@ -28,17 +28,16 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		local arg = vim.fn.argv(0)
 		if vim.fn.isdirectory(arg) == 1 then
-			vim.cmd("bd")  -- close the directory buffer
+			vim.cmd("bd") -- close the directory buffer
 			require("neo-tree.command").execute({ action = "focus", dir = arg })
 		end
 	end,
 })
 
 -- short yank highlight animation
-vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 150 })
-	end,
+vim.api.nvim_create_autocmd('TextYankPost', {
+	group = vim.api.nvim_create_augroup('custom-highlight-yank', { clear = true }),
+	callback = function() vim.hl.on_yank({ higroup = "YankHighlight" }) end,
 })
 -- make highlight color bright orange
 vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#ff6600", fg = "#ffffff" })
