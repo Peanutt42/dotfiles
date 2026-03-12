@@ -29,9 +29,6 @@ vim.diagnostic.config({
 	update_in_insert = true
 })
 
--- Colorscheme: github_dark_contrast
-vim.cmd("colorscheme github_dark_contrast")
-
 
 -- hide cmdline when not used
 vim.o.cmdheight = 0
