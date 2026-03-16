@@ -26,3 +26,9 @@ vim.keymap.set("v", "<C-Up>", "<C-u>:echoe 'this is neovim btw!'<CR>")
 vim.keymap.set("v", "<C-Down>", "<C-u>:echoe 'this is neovim btw!'<CR>")
 vim.keymap.set("v", "<C-Left>", "<C-u>:echoe 'this is neovim btw!'<CR>")
 vim.keymap.set("v", "<C-Right>", "<C-u>:echoe 'this is neovim btw!'<CR>")
+
+
+
+return {
+	"ThePrimeagen/vim-be-good",
+}
