@@ -1,3 +1,11 @@
+// Include dms files
+include "dms/colors.kdl"
+include "dms/layout.kdl"
+include "dms/alttab.kdl"
+include "dms/binds.kdl"
+include "dms/cursor.kdl"
+include "dms/outputs.kdl"
+
 
 config-notification {
     disable-failed
@@ -117,12 +125,17 @@ recent-windows {
     }
 }
 
-// Include dms files
-include "dms/colors.kdl"
-include "dms/layout.kdl"
-include "dms/alttab.kdl"
-include "dms/binds.kdl"
+binds {
+	// Mod+H/J/K/L to navigate windows
+	Mod+H { focus-column-left; }
+	Mod+J { focus-workspace-down; }
+	Mod+K { focus-workspace-up; }
+	Mod+L { focus-column-right; }
+
+	// Mod+Alt+J/K to still be able to navigate windows that are tiled above each other
+	Mod+Alt+J { focus-window-down; }
+	Mod+Alt+K { focus-window-up; }
+}
 
 include "monitors.kdl"
-include "dms/cursor.kdl"
-include "dms/outputs.kdl"
+
