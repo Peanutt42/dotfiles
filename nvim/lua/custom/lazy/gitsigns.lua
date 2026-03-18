@@ -1,9 +1,7 @@
 -- per line git status
 return {
 	"lewis6991/gitsigns.nvim",
-	config = function()
-		require("gitsigns").setup({
-			attach_to_untracked = true,
-		})
-	end
+	opts = {
+		attach_to_untracked = true,
+	}
 }

@@ -8,13 +8,32 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	lazy = false, -- neo-tree will lazily load itself
-	config = function()
-		require("neo-tree").setup({
-			window = {
-				position = "right"
+	---@module 'neo-tree'
+	---@type neotree.Config
+	opts = {
+		window = {
+			position = "right",
+			mappings = {
+				["<C-b>"] = "close_window",
+				["<esc>"] = "close_window",
+			},
+			mapping_options = {
+				noremap = true,
+				nowait = true,
 			}
-		})
-
-		vim.keymap.set("n", "<leader>b", function() vim.cmd [[Neotree position=right toggle]] end)
-	end
+		},
+		buffers = {
+			follow_current_file = {
+				enabled = true,
+			},
+		}
+	},
+	keys = {
+		{
+			"<C-b>",
+			function()
+				require("neo-tree.command").execute({ toggle = true })
+			end,
+		},
+	}
 }
