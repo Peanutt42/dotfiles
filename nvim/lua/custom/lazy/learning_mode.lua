@@ -1,6 +1,3 @@
-vim.o.mouse = ""
-vim.o.mousescroll = "ver:0,hor:0"
-
 vim.keymap.set("n", "<Up>", ":echoe 'this is neovim btw!'<CR>")
 vim.keymap.set("n", "<Down>", ":echoe 'this is neovim btw!'<CR>")
 vim.keymap.set("n", "<Left>", ":echoe 'this is neovim btw!'<CR>")
@@ -26,8 +23,6 @@ vim.keymap.set("v", "<C-Up>", "<C-u>:echoe 'this is neovim btw!'<CR>")
 vim.keymap.set("v", "<C-Down>", "<C-u>:echoe 'this is neovim btw!'<CR>")
 vim.keymap.set("v", "<C-Left>", "<C-u>:echoe 'this is neovim btw!'<CR>")
 vim.keymap.set("v", "<C-Right>", "<C-u>:echoe 'this is neovim btw!'<CR>")
-
-
 
 return {
 	"ThePrimeagen/vim-be-good",

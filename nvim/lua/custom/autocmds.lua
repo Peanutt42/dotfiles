@@ -41,3 +41,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 -- make highlight color bright orange
 vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#ff6600", fg = "#ffffff" })
+
+-- restore cursor style when exiting neovim
+vim.api.nvim_create_autocmd("VimLeave", {
+	callback = function()
+		vim.o.guicursor = ""
+		vim.fn.chansend(vim.v.stderr, "\x1b[ q")
+	end,
+})

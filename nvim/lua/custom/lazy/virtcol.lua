@@ -7,6 +7,6 @@ return {
 	},
 	config = function(_, opts)
 		require("virt-column").setup(opts)
-		vim.api.nvim_set_hl(0, "VirtColumn", { fg = "#101010" })
+		vim.api.nvim_set_hl(0, "VirtColumn", { fg = "#2F3337" })
 	end,
 }
