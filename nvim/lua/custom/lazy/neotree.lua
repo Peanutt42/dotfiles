@@ -15,6 +15,7 @@ return {
 			position = "right",
 			mappings = {
 				["<C-b>"] = "close_window",
+				["<leader>b"] = "close_window",
 				["<esc>"] = "close_window",
 			},
 			mapping_options = {
@@ -31,6 +32,12 @@ return {
 	keys = {
 		{
 			"<C-b>",
+			function()
+				require("neo-tree.command").execute({ toggle = true })
+			end,
+		},
+		{
+			"<leader>b",
 			function()
 				require("neo-tree.command").execute({ toggle = true })
 			end,
