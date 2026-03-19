@@ -10,6 +10,7 @@ vim.o.sidescrolloff = 10
 vim.o.wrap = false
 vim.o.cursorline = true
 vim.o.updatetime = 250
+vim.o.mousemoveevent = true
 
 vim.o.undofile = true
 vim.o.swapfile = false
