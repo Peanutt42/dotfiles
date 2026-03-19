@@ -59,7 +59,19 @@ return {
 			vim.lsp.enable(name)
 		end
 
-		-- nixd is seperate, installed through a system package
+		-- manually installed through a system package
 		vim.lsp.enable("nixd")
+
+		vim.lsp.config("clangd", {
+			cmd = {
+				"clangd",
+				"--background-index",
+				"--clang-tidy",
+				"--header-insertion=iwyu",
+				"--completion-style=detailed",
+			}
+		})
+		vim.lsp.enable("clangd")
+		vim.lsp.enable("clang-format")
 	end
 }
