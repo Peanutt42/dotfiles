@@ -2,49 +2,53 @@
 return {
 	'stevearc/conform.nvim',
 	event = { 'BufWritePre' },
-	cmd = { 'ConformInfo' },
+	cmd = { 'ConformInfo', 'Format', 'DisableFormatOnSave', 'EnableFormatOnSave' },
 	keys = {
 		{
 			'<leader>f',
-			function() require('conform').format { async = true, lsp_format = 'fallback' } end,
+			function() vim.cmd("Format") end,
 			mode = '',
 			desc = '[F]ormat buffer',
 		},
 	},
-	---@module 'conform'
-	---@type conform.setupOpts
-	opts = {
-		notify_on_error = false,
-		format_on_save = function(_)
-			if vim.g.disable_autoformat then
-				return
-			end
+	config = function()
+		require("conform").setup({
+			notify_on_error = false,
+			format_on_save = function(_)
+				if vim.g.disable_format_on_save then
+					return
+				end
 
-			return {
-				timeout_ms = 500,
-				lsp_format = 'fallback',
-			}
-		end,
-		formatters_by_ft = {
-			rust = { "rustfmt", lsp_format = "fallback" },
-		},
-	},
-	config = function(_, opts)
-		require("conform").setup(opts)
+				return {
+					timeout_ms = 500,
+					lsp_format = 'fallback',
+				}
+			end,
+			formatters_by_ft = {
+				rust = { "rustfmt", lsp_format = "fallback" },
+			},
+		})
 
 		vim.api.nvim_create_user_command(
-			"DisableAutoformat",
+			"DisableFormatOnSave",
 			function()
-				vim.g.disable_autoformat = true
+				vim.g.disable_format_on_save = true
 			end,
-			{ desc = "Disables auto formatting" }
+			{ desc = "Disables auto formatting on save" }
 		)
 		vim.api.nvim_create_user_command(
-			"EnableAutoformat",
+			"EnableFormatOnSave",
 			function()
-				vim.g.disable_autoformat = false
+				vim.g.disable_format_on_save = false
 			end,
-			{ desc = "Enables auto formatting" }
+			{ desc = "Enables auto formatting on save" }
+		)
+		vim.api.nvim_create_user_command(
+			"Format",
+			function()
+				require('conform').format({ async = true, lsp_format = 'fallback' })
+			end,
+			{ desc = "Formats current buffer" }
 		)
 	end,
 }
