@@ -26,6 +26,8 @@ input {
         xkb {
         }
         numlock
+        repeat-delay 400
+        repeat-rate 35
     }
     touchpad {
     	tap
