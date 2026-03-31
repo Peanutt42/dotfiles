@@ -1,0 +1,7 @@
+display_full_path = true
+search_submodules = false
+recursive_submodules = false
+
+[[search_dirs]]
+path = "/home/peter/github"
+depth = 4

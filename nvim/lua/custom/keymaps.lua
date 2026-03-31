@@ -28,3 +28,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 -- Ctrl + n/p to go to next/prev buffer
 vim.keymap.set("n", "<C-n>", ":bnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-p>", ":bprevious<CR>", { noremap = true, silent = true })
+
+-- Ctrl + f tmux-sessionizer
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux display-popup -E \"tms\"<CR>")

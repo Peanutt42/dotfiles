@@ -10,7 +10,6 @@ return {
 		vim.keymap.set("n", "<C-p>", builtin.find_files, { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>fg", builtin.git_files, { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>fs", builtin.live_grep, { noremap = true, silent = true })
-		vim.keymap.set("n", "<C-f>", builtin.live_grep, { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>fb", builtin.buffers, { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { noremap = true, silent = true })
 	end
