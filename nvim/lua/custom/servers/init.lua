@@ -2,17 +2,18 @@
 
 every file (not init.lua) defines a lsp server following this config structure:
 
--- xyz.lua
+-- xyz.lua: the name of the lsp is defined through the file's stem, here: 'xyz'
 return {
-	# defaults to true if not provided
+	-- defaults to true if not provided
+	-- when false will not install lsp through mason
 	mason_ensure_installed = true,
-	# TODO: add option to custom config call: see jdtls
+
+	-- the rest is just `vim.lsp.Config`
 	settings = {
 		xyz = {
 			some_lsp_config = "idk",
 		}
 	}
-	... rest of the configuration fields
 }
 
 --]]
@@ -30,22 +31,25 @@ local server_configs = {
 	lsp_configs = {},
 }
 
--- TODO: use current filepath
-local path = vim.fn.stdpath("config") .. "/lua/custom/servers"
+local servers_dir = vim.fn.stdpath("config") .. "/lua/custom/servers"
 
-for _, file in ipairs(vim.fn.glob(path .. "/*.lua", false, true)) do
-	local name = vim.fn.fnamemodify(file, ":t:r")
+for _, file in ipairs(vim.fn.glob(servers_dir .. "/*.lua", false, true)) do
+	-- filestem (no extension)
+	local server_name = vim.fn.fnamemodify(file, ":t:r")
 
-	if name ~= "init" then
+	if server_name ~= "init" then
 		---@type ServerConfig
-		local server_config = require("custom.servers." .. name)
+		local server_config = require("custom.servers." .. server_name)
+
 		if server_config.mason_ensure_installed ~= false then
-			table.insert(server_configs.mason_ensure_installed, name)
+			table.insert(server_configs.mason_ensure_installed, server_name)
 		end
 
+		-- cast `ServerConfig` to `vim.lsp.Config`
 		server_config.mason_ensure_installed = nil
 		local lsp_config = server_config --[[@as vim.lsp.Config]]
-		server_configs.lsp_configs[name] = lsp_config
+
+		server_configs.lsp_configs[server_name] = lsp_config
 	end
 end
 
