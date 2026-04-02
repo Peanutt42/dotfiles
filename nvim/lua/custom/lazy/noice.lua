@@ -34,8 +34,13 @@ return {
 					cond = function(msg)
 						local client = msg.opts and msg.opts.progress and msg.opts.progress.client
 						local title = msg.opts and msg.opts.progress and msg.opts.progress.title
-						return client == "jdtls" and
-							(title == "Validate documents" or title == "Publish Diagnostics")
+						if client == "jdtls" then
+							return title == "Validate documents" or title == "Publish Diagnostics"
+						end
+						if client == "lua_ls" then
+							return title == "Diagnosing"
+						end
+						return false
 					end,
 				},
 				opts = { skip = true }
