@@ -1,0 +1,14 @@
+
+# (re-)generates the `hardware-configuration.nix` file for that `host`
+[arg('host', pattern='pc|framework-laptop|lenovo-laptop')]
+generate_hardware_configuration host:
+	nixos-generate-config --show-hardware-config > ./hosts/{{host}}/hardware-configuration.nix
+
+# installs the configuration of the `host` configuration
+[arg('host', pattern='pc|framework-laptop|lenovo-laptop')]
+install host:
+	sudo nixos-rebuild switch --flake .#{{host}}
+
+# formats all .nix files with nixfmt
+fmt:
+	nixfmt ./**.nix
