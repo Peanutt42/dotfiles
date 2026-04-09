@@ -35,7 +35,7 @@ return {
 				padding = 0,
 				with_markers = true,
 				indent_marker = "│",
-				last_indent_marker = "└", -- "│",
+				last_indent_marker = "╰╴",
 				highlight = "NeoTreeIndentMarker",
 			}
 		}

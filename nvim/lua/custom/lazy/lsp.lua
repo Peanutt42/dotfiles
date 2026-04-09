@@ -1,15 +1,5 @@
 return {
-	{
-		"williamboman/mason-lspconfig.nvim",
-		--[[opts = {
-			automatic_enable = {
-				exclude = {
-					-- see 'mfussenegger/nvim-jdtls' (in jdtls.lua)
-					'jdtls'
-				}
-			}
-		}]] --
-	},
+	"williamboman/mason-lspconfig.nvim",
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -32,6 +22,24 @@ return {
 				vim.lsp.config(name, lsp_config)
 				vim.lsp.enable(name)
 			end
+
+			vim.api.nvim_create_autocmd('LspAttach', {
+				group = vim.api.nvim_create_augroup('custom-lsp-attach', { clear = true }),
+				callback = function(event)
+					vim.keymap.set('n', 'grn', vim.lsp.buf.rename, {
+						buffer = event.buf, desc = 'LSP: [R]e[n]ame'
+					})
+					vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, {
+						buffer = event.buf, desc = 'LSP: [G]oto Code [A]ction'
+					})
+					vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
+						buffer = event.buf, desc = 'LSP: [G]oto [D]efinition'
+					})
+					vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {
+						buffer = event.buf, desc = 'LSP: [G]oto [D]eclaration'
+					})
+				end,
+			})
 		end
 	}
 }
