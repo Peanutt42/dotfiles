@@ -33,15 +33,6 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 
--- inline diagnostic error messages
-vim.diagnostic.enable()
-vim.diagnostic.config({
-	virtual_text = true,
-	virtual_lines = true,
-	update_in_insert = true
-})
-
-
 -- hide cmdline when not used
 vim.o.cmdheight = 0
 
