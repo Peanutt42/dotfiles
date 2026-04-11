@@ -10,10 +10,6 @@
   hardware.graphics.enable32Bit = true;
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  boot.initrd.kernelModules = [ "nvidia" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
-  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
-
   hardware.nvidia = {
     modesetting.enable = true;
 
@@ -28,6 +24,7 @@
 
     nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # legacy 580 for NVIDIA GTX 1050 TI
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
 }
