@@ -12,6 +12,8 @@ return {
 					enabled = true,
 					always_show = true,
 				},
+				throttle = 0,
+				enable_on_insert = true,
 			}
 		})
 
