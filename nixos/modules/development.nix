@@ -34,6 +34,8 @@
     # lsp
     nixd
     nixfmt
+
+    cloudflared
   ];
 
   programs.java = {

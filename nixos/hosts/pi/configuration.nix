@@ -8,6 +8,8 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./cloudflared.nix
+    ./nginx.nix
     ../../modules/cachix.nix
     ../../modules/tui-apps.nix
     ../../modules/development.nix

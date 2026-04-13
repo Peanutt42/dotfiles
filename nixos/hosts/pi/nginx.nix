@@ -1,0 +1,16 @@
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+
+{
+  services.nginx = {
+    enable = true;
+    virtualHosts."peternhennig.de" = {
+      root = "/var/www/portfolio";
+    };
+  };
+}
