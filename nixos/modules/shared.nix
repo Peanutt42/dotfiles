@@ -10,14 +10,6 @@
     "flakes"
   ];
 
-  imports = [
-    ./cachix.nix
-    ./niri.nix
-    ./gnome.nix
-    ./apps.nix
-    ./development.nix
-  ];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -92,8 +84,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  services.flatpak.enable = true;
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [

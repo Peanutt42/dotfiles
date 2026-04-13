@@ -1,14 +1,12 @@
 { pkgs, ... }:
 
 {
-  programs = {
-    firefox.enable = true;
-    fish.enable = true;
-  };
+  programs.firefox.enable = true;
+
+  services.flatpak.enable = true;
 
   environment.systemPackages = with pkgs; [
     appimage-run
-    unzip
 
     thunderbird
     zapzap
@@ -33,26 +31,21 @@
 
     gimp
 
-    starship
-    zoxide
-    fastfetch
     kitty
-
-    stow
-
-    rclone
 
     sioyek
 
-    htop
-    btop
     mission-center
 
     winboat
     freerdp
 
-    podman
     podman-desktop
+
+    # also development, but more GUI
+    github-desktop
+    gitkraken
+    zed-editor
 
     # cursor
     bibata-cursors

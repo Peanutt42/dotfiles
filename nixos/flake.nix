@@ -41,5 +41,14 @@
           ./hosts/lenovo-laptop/configuration.nix
         ];
       };
+      nixosConfigurations.pi = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+
+        modules = [
+          # nixos-hardware.nixosModules.raspberry-pi-4
+          ./modules/shared.nix
+          ./hosts/pi/configuration.nix
+        ];
+      };
     };
 }

@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  programs.fish.enable = true;
+
   environment.systemPackages = with pkgs; [
     rustup
     gcc
@@ -25,8 +27,6 @@
     git
     lazygit
     gh
-    github-desktop
-    gitkraken
 
     neovim
     ripgrep
@@ -34,11 +34,6 @@
     # lsp
     nixd
     nixfmt
-
-    # tmux, build our own fork from source
-    tmux-sessionizer
-
-    zed-editor
   ];
 
   programs.java = {
