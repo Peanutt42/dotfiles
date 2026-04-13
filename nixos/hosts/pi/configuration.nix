@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
     ./cloudflared.nix
     ./nginx.nix
+    ./adguard-home.nix
     ../../modules/cachix.nix
     ../../modules/tui-apps.nix
     ../../modules/development.nix
