@@ -12,10 +12,6 @@
     enableCalendarEvents = false;
   };
   programs.dsearch.enable = true;
-  services.displayManager.dms-greeter = {
-    enable = true;
-    compositor.name = "niri";
-  };
 
   programs.xwayland.enable = true;
   environment.systemPackages = [ pkgs.xwayland-satellite ];
