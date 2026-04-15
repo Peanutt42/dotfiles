@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   nix.settings.experimental-features = [
@@ -81,9 +81,6 @@
     packages = with pkgs; [ cachix ];
     shell = pkgs.fish;
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [

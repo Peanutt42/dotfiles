@@ -14,39 +14,48 @@
       nixos-hardware,
       ...
     }:
-    {
-      nixosConfigurations.pc = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+    let
+      tmux-fork-overlay = import ./overlays/tmux-fork.nix;
 
+      mkSystem =
+        { system, modules }:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+            overlays = [ tmux-fork-overlay ];
+          };
+          modules = [ ./modules/shared.nix ] ++ modules;
+        };
+    in
+    {
+      nixosConfigurations.pc = mkSystem {
+        system = "x86_64-linux";
         modules = [
-          ./modules/shared.nix
           ./hosts/pc/configuration.nix
         ];
       };
-      nixosConfigurations.framework-laptop = nixpkgs.lib.nixosSystem {
+
+      nixosConfigurations.framework-laptop = mkSystem {
         system = "x86_64-linux";
-
         modules = [
-          ./modules/shared.nix
-          ./hosts/framework-laptop/configuration.nix
-
           nixos-hardware.nixosModules.framework-amd-ai-300-series
+          ./hosts/framework-laptop/configuration.nix
         ];
       };
-      nixosConfigurations.lenovo-laptop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
 
+      nixosConfigurations.lenovo-laptop = mkSystem {
+        system = "x86_64-linux";
         modules = [
-          ./modules/shared.nix
           ./hosts/lenovo-laptop/configuration.nix
         ];
       };
-      nixosConfigurations.pi = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
 
+      nixosConfigurations.pi = mkSystem {
+        system = "aarch64-linux";
         modules = [
           # nixos-hardware.nixosModules.raspberry-pi-4
-          ./modules/shared.nix
           ./hosts/pi/configuration.nix
         ];
       };

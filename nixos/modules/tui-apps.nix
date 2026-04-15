@@ -11,7 +11,7 @@
     htop
     btop
 
-    # tmux, build our own fork from source
+    tmux # forked version! (see ../overlays/tmux-fork.nix)
     tmux-sessionizer
 
     podman
