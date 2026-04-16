@@ -5,6 +5,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    git_progress_sync.url = "github:Peanutt42/git_progress_sync";
   };
 
   outputs =
@@ -12,6 +14,7 @@
       self,
       nixpkgs,
       nixos-hardware,
+      git_progress_sync,
       ...
     }:
     let
@@ -24,7 +27,10 @@
           pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = true;
-            overlays = [ tmux-fork-overlay ];
+            overlays = [
+              tmux-fork-overlay
+              git_progress_sync.overlays.default
+            ];
           };
           modules = [ ./modules/shared.nix ] ++ modules;
         };
