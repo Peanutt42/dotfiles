@@ -6,8 +6,7 @@
     ../../modules/cachix.nix
     ../../modules/niri.nix
     ../../modules/gnome.nix
-    ../../modules/gui-apps.nix
-    ../../modules/tui-apps.nix
+    ../../modules/apps.nix
     ../../modules/development.nix
   ];
 

@@ -12,7 +12,7 @@
     ./nginx.nix
     ./adguard-home.nix
     ../../modules/cachix.nix
-    ../../modules/tui-apps.nix
+    ../../modules/apps.nix
     ../../modules/development.nix
   ];
 
@@ -32,6 +32,9 @@
     enable = true;
     settings.PasswordAuthentication = true;
   };
+
+  # see ../../modules/apps.nix
+  headless = true;
 
   # since we downloaded pre release unstable nixos sd images
   system.stateVersion = lib.mkForce "26.05";
