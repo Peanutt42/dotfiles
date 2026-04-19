@@ -11,7 +11,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       nixos-hardware,
       git_progress_sync,

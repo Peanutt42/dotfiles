@@ -1,17 +1,11 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ lib, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ./cloudflared.nix
-    ./nginx.nix
-    ./adguard-home.nix
-    ../../modules/cachix.nix
+    ../../modules/cloudflared-tunnel.nix
+    ../../modules/nginx.nix
+    ../../modules/adguard-home.nix
     ../../modules/apps.nix
     ../../modules/development.nix
   ];

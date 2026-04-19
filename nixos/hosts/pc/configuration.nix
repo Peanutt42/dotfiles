@@ -1,9 +1,8 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/cachix.nix
     ../../modules/niri.nix
     ../../modules/gnome.nix
     ../../modules/apps.nix

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 # GNOME Desktop Environment
 {
