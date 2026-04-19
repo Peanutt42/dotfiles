@@ -8,11 +8,8 @@
       enable = true; # Systemd service for auto-start
       restartIfChanged = true; # Auto-restart dms.service when dms-shell changes
     };
-    # disabled cuz for some reason it breaks my nixos build process as sqhinx docu>
-    enableCalendarEvents = false;
   };
   programs.dsearch.enable = true;
-
   programs.xwayland.enable = true;
   environment.systemPackages = [ pkgs.xwayland-satellite ];
 }
