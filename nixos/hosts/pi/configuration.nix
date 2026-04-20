@@ -8,6 +8,7 @@
     ../../modules/adguard-home.nix
     ../../modules/apps.nix
     ../../modules/development.nix
+    ../../modules/gnupg.nix
   ];
 
   networking.hostName = "peter-pi";
