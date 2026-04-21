@@ -38,6 +38,11 @@
     nixd
     nixfmt
 
+    typst
+    typstyle
+    typst-live
+    tinymist
+
     cloudflared
   ];
 

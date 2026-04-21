@@ -71,6 +71,8 @@
         github-desktop
         gitkraken
         zed-editor
+        jetbrains.idea
+        vscode
 
         # cursor
         bibata-cursors
