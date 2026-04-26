@@ -36,6 +36,13 @@ return {
 				vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {
 					buffer = event.buf, desc = 'LSP: [G]oto [D]eclaration'
 				})
+
+				-- enable inlay hints by default
+				vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+				-- toggle inlay hints with <leader>ih
+				vim.keymap.set("n", "<leader>ih", function()
+					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+				end)
 			end,
 		})
 	end
