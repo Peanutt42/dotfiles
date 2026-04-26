@@ -40,8 +40,6 @@
         bitwarden-desktop
         ente-auth
 
-        localsend
-
         obs-studio
 
         # proton-vpn ???
@@ -89,5 +87,10 @@
     programs.firefox.enable = lib.mkIf (!config.headless) true;
 
     services.flatpak.enable = lib.mkIf (!config.headless) true;
+
+    programs.localsend = {
+      enable = !config.headless;
+      openFirewall = true;
+    };
   };
 }
