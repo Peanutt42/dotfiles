@@ -111,6 +111,10 @@ window-rule {
     open-floating true
 }
 window-rule {
+	match app-id=r#"^app\.zen_browser\.zen$"#
+	open-maximized true
+}
+window-rule {
     match app-id=r#"org.quickshell$"#
     open-floating true
 }
@@ -137,6 +141,12 @@ binds {
 	// Mod+Alt+J/K to still be able to navigate windows that are tiled above each other
 	Mod+Alt+J { focus-window-down; }
 	Mod+Alt+K { focus-window-up; }
+
+	// Play/Pause/Prev/Next Audio
+	XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
+	XF86AudioPause allow-when-locked=true { spawn "playerctl" "pause"; }
+	XF86AudioPrev allow-when-locked=true { spawn "playerctl" "previous"; }
+	XF86AudioNext allow-when-locked=true { spawn "playerctl" "next"; }
 }
 
 include "monitors.kdl"

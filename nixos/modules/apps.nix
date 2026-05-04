@@ -69,7 +69,7 @@
         github-desktop
         gitkraken
         zed-editor
-        jetbrains.idea
+        jetbrains.idea-oss
         vscode
 
         # cursor

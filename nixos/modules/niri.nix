@@ -11,5 +11,8 @@
   };
   programs.dsearch.enable = true;
   programs.xwayland.enable = true;
-  environment.systemPackages = [ pkgs.xwayland-satellite ];
+  environment.systemPackages = with pkgs; [
+    xwayland-satellite # for X11 support on Wayland
+    playerctl # for play/pause/prev/next etc. audio controls
+  ];
 }
