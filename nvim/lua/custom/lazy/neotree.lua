@@ -38,6 +38,10 @@ return {
 				last_indent_marker = "╰╴",
 				highlight = "NeoTreeIndentMarker",
 			}
+		},
+		filesystem = {
+			group_empty_dirs = true,
+			scan_mode = "deep",
 		}
 	},
 	config = function(_, opts)
