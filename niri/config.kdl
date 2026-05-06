@@ -24,6 +24,9 @@ gestures {
 input {
     keyboard {
         xkb {
+			layout "de"
+			// remap capslock to escape, mainly for neovim
+			options "caps:escape"
         }
         numlock
         repeat-delay 250
@@ -32,7 +35,7 @@ input {
     touchpad {
     	tap
 
-     	accel-profile "adaptive"
+		accel-profile "adaptive"
 
     	natural-scroll
     }
@@ -50,8 +53,9 @@ layer-rule {
     place-within-backdrop true
 }
 overview {
-    workspace-shadow {
-    }
+	zoom 0.3
+	workspace-shadow {
+	}
 }
 layout {
 	shadow {
@@ -60,6 +64,11 @@ layout {
 	}
 }
 
+blur {
+	passes 2
+	offset 5
+	noise 0.02
+}
 
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
 environment {
@@ -71,6 +80,13 @@ hotkey-overlay {
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
+window-rule {
+	match app-id=r#"^kitty$"#
+	background-effect {
+		blur true
+		xray false
+	}
+}
 window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
