@@ -9,43 +9,50 @@ return {
 			map_bs = false,
 		})
 
-		-- deletes entire line if it only consists of whitespace and moves one up, to the end of the line above
+		-- removes all whitespace in front of cursor if everything is just whitespace infront of the cursor
+		-- moves one line up, to the end of that line, inserting the removed whitespace if that line is empty
 		local function smart_bs()
-			local function execute_cmd(str)
+			local function fallback()
+				local bufnr = vim.api.nvim_get_current_buf()
 				vim.api.nvim_feedkeys(
-					vim.api.nvim_replace_termcodes(str, true, false, true),
+					npairs.autopairs_bs(bufnr),
 					"n",
 					true
 				)
 			end
 
+			local row, col = unpack(vim.api.nvim_win_get_cursor(0))
 			local line = vim.api.nvim_get_current_line()
-			local line_number = vim.api.nvim_win_get_cursor(0)[1]
-			local col = vim.api.nvim_win_get_cursor(0)[2]
+			local before_cursor = line:sub(1, col)
 
-			if line:match("^%s*$") and col > 0 then
-				if line_number == 1 then
-					execute_cmd("<C-u>")
-				else
-					execute_cmd("<C-o>dd")
-
-					if line_number ~= vim.api.nvim_buf_line_count(0) then
-						execute_cmd("<Up>")
-					end
-
-					execute_cmd("<End>")
+			if col > 0 and before_cursor:match("^%s*$") then
+				local prev_row = row - 1
+				if prev_row < 1 then
+					fallback()
+					return
 				end
+
+				local prev_line =
+					vim.api.nvim_buf_get_lines(0, prev_row - 1, prev_row, false)[1]
+
+				local remaining = line:sub(col + 1)
+
+				vim.api.nvim_buf_set_lines(0, row - 1, row, false, {})
+
+				if prev_line == "" then
+					prev_line = before_cursor
+					vim.api.nvim_buf_set_lines(0, prev_row - 1, prev_row, false, { prev_line })
+				end
+
+				local new_line = prev_line .. remaining
+
+				vim.api.nvim_buf_set_lines(0, prev_row - 1, prev_row, false, { new_line })
+				vim.api.nvim_win_set_cursor(0, { prev_row, #prev_line })
 
 				return
 			end
 
-			-- default case: fallback to autopairs bs implementation
-			local bufnr = vim.api.nvim_get_current_buf()
-			vim.api.nvim_feedkeys(
-				npairs.autopairs_bs(bufnr),
-				"n",
-				true
-			)
+			fallback()
 		end
 
 		vim.keymap.set("i", "<BS>", smart_bs, { noremap = true })
