@@ -25,11 +25,6 @@ return {
 				nowait = true,
 			}
 		},
-		buffers = {
-			follow_current_file = {
-				enabled = true,
-			},
-		},
 		default_component_configs = {
 			indent = {
 				padding = 0,
@@ -42,6 +37,11 @@ return {
 		filesystem = {
 			group_empty_dirs = true,
 			scan_mode = "deep",
+			use_libuv_file_watcher = true,
+			follow_current_file = {
+				enabled = true,
+				leave_dirs_open = true,
+			},
 		}
 	},
 	config = function(_, opts)
