@@ -26,6 +26,13 @@ return {
 			end,
 			formatters_by_ft = {
 				rust = { "rustfmt", lsp_format = "fallback" },
+				javascript = { "prettier" },
+				javascriptreact = { "prettier" },
+				typescript = { "prettier" },
+				typescriptreact = { "prettier" },
+				css = { "prettier" },
+				html = { "prettier" },
+				json = { "prettier" },
 			},
 		})
 

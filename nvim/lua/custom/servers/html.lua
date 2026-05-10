@@ -1,0 +1,4 @@
+---@type ServerConfig
+return {
+
+}

@@ -1,3 +1,4 @@
+---@type ServerConfig
 return {
 	settings = {
 		formatterMode = "typstyle",

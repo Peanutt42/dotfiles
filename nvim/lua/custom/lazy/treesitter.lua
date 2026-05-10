@@ -6,8 +6,10 @@ return {
 	opts = {
 		ensure_installed = {
 			"help", "vim", "regex", "markdown", "markdown_inline", "bash",
-			"javascript", "typescript", "c", "lua", "rust", "vhdl", "haskell",
-			"java", "fish", "nix"
+			"c", "lua", "rust", "vhdl", "haskell",
+			"java", "fish", "nix",
+			-- web-dev:
+			"javascript", "typescript", "tsx", "html", "css"
 		},
 		sync_install = false,
 		auto_install = true,
