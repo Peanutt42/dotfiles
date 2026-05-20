@@ -7,6 +7,7 @@
     ../../modules/gnome.nix
     ../../modules/apps.nix
     ../../modules/development.nix
+    ../../modules/onedrive-rclone.nix
     ../../modules/gnupg.nix
   ];
 
