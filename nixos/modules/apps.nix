@@ -17,7 +17,6 @@
       with pkgs;
       [
         unzip
-        rclone
         starship
         zoxide
         fastfetch
@@ -32,6 +31,7 @@
       ]
       ++ lib.optionals (!config.headless) [
         appimage-run
+        steam
 
         thunderbird
         zapzap
@@ -42,7 +42,7 @@
 
         obs-studio
 
-        # proton-vpn ???
+        proton-vpn
 
         p3x-onenote
 

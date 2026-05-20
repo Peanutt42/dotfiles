@@ -8,10 +8,17 @@
     ../../modules/apps.nix
     ../../modules/development.nix
     ../../modules/onedrive-rclone.nix
+    ../../modules/ai-tools.nix
     ../../modules/gnupg.nix
   ];
 
   networking.hostName = "peter-pc";
+
+  # SSH
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = true;
+  };
 
   # NVIDIA driver
   hardware.graphics.enable = true;

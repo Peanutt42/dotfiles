@@ -8,6 +8,7 @@
     ../../modules/apps.nix
     ../../modules/development.nix
     ../../modules/onedrive-rclone.nix
+    ../../modules/ai-tools.nix
     ../../modules/gnupg.nix
   ];
 
