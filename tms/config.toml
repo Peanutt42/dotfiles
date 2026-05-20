@@ -3,5 +3,5 @@ search_submodules = false
 recursive_submodules = false
 
 [[search_dirs]]
-path = "/home/peter/github"
+path = "/home/peter/Projects"
 depth = 4
