@@ -16,6 +16,8 @@
     just
     nodejs
 
+    direnv
+
     jdk21
     maven
     gradle

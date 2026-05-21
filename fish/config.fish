@@ -27,4 +27,6 @@ fish_add_path /home/peter/.opencode/bin
 # tmux-sessionizer
 COMPLETE=fish tms | source
 
+direnv hook fish | source
+
 source $HOME/.config/fish/alias.fish
