@@ -27,6 +27,8 @@
         tmux # forked version! (see ../overlays/tmux-fork.nix)
         tmux-sessionizer
 
+        gwq # build from source (see ../overlays/gwq/overlay.nix)
+
         podman
       ]
       ++ lib.optionals (!config.headless) [

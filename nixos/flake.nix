@@ -18,6 +18,7 @@
     }:
     let
       tmux-fork-overlay = import ./overlays/tmux-fork.nix;
+      gwq-overlay = import ./overlays/gwq/overlay.nix;
 
       mkSystem =
         { system, modules }:
@@ -29,6 +30,7 @@
             overlays = [
               tmux-fork-overlay
               git_progress_sync.overlays.default
+              gwq-overlay
             ];
           };
           modules = [ ./modules/shared.nix ] ++ modules;
