@@ -4,7 +4,8 @@ include "dms/layout.kdl"
 include "dms/alttab.kdl"
 include "dms/binds.kdl"
 include "dms/cursor.kdl"
-include "dms/outputs.kdl"
+include optional=true "dms/outputs.kdl"
+include "dms/windowrules.kdl"
 
 
 config-notification {
@@ -82,9 +83,10 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 window-rule {
 	match app-id=r#"^kitty$"#
+	// blur is too laggy on laptop: maybe only enable on pc with special desktop only config file
 	background-effect {
-		blur true
-		xray false
+		// blur true
+		// xray false
 	}
 }
 window-rule {
@@ -127,12 +129,21 @@ window-rule {
     open-floating true
 }
 window-rule {
+    match app-id=r#"^app\.zen_browser\.zen$"# title="^Picture-in-Picture$"
+    match app-id=r#"^app\.zen_browser\.zen$"# title="Bitwarden"
+    open-floating true
+}
+window-rule {
 	match app-id=r#"^app\.zen_browser\.zen$"#
 	open-maximized true
 }
 window-rule {
     match app-id=r#"org.quickshell$"#
     open-floating true
+}
+window-rule {
+	match app-id="Kindle_personal_dashboard"
+	open-floating true
 }
 debug {
     honor-xdg-activation-with-invalid-serial
@@ -165,6 +176,4 @@ binds {
 	XF86AudioNext allow-when-locked=true { spawn "playerctl" "next"; }
 	XF86AudioStop allow-when-locked=true { spawn "playerctl" "stop"; }
 }
-
-include "monitors.kdl"
 
