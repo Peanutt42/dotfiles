@@ -18,7 +18,7 @@
     }:
     let
       tmux-fork-overlay = import ./overlays/tmux-fork.nix;
-      gwq-overlay = import ./overlays/gwq/overlay.nix;
+      gwq-overlay = import ./overlays/gwq.nix;
 
       mkSystem =
         { system, modules }:
