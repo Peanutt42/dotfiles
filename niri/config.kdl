@@ -72,6 +72,7 @@ blur {
 }
 
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
+spawn-at-startup "bash" "-c" "python3 ~/.config/niri/dynamic-open-float.py"
 environment {
   XDG_CURRENT_DESKTOP "niri"
 }
@@ -124,18 +125,14 @@ window-rule {
     draw-border-with-background false
 }
 window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    match app-id="zoom"
-    open-floating true
-}
-window-rule {
-    match app-id=r#"^app\.zen_browser\.zen$"# title="^Picture-in-Picture$"
-    match app-id=r#"^app\.zen_browser\.zen$"# title="Bitwarden"
-    open-floating true
-}
-window-rule {
 	match app-id=r#"^app\.zen_browser\.zen$"#
 	open-maximized true
+}
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"^app\.zen_browser\.zen$"# title="^Picture-in-Picture$"
+    open-floating true
+	default-floating-position x=32 y=32 relative-to="bottom-right"
 }
 window-rule {
     match app-id=r#"org.quickshell$"#
