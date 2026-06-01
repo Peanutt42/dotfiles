@@ -33,9 +33,11 @@ class Match:
         matched = True
 
         if self.title is not None:
-            matched &= re.search(self.title, window["title"]) is not None
+            wtitle = window.get("title") or ""
+            matched &= re.search(self.title, wtitle) is not None
         if self.app_id is not None:
-            matched &= re.search(self.app_id, window["app_id"]) is not None
+            wapp = window.get("app_id") or ""
+            matched &= re.search(self.app_id, wapp) is not None
 
         return matched
 
