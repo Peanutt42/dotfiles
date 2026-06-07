@@ -84,6 +84,9 @@
         openconnect
         networkmanager-openconnect
         gp-saml-gui
+
+        # 3d printing
+        orca-slicer
       ];
 
     programs.firefox.enable = lib.mkIf (!config.headless) true;
