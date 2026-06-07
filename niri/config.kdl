@@ -83,14 +83,6 @@ prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 window-rule {
-	match app-id=r#"^kitty$"#
-	// blur is too laggy on laptop: maybe only enable on pc with special desktop only config file
-	background-effect {
-		// blur true
-		// xray false
-	}
-}
-window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
 }
@@ -174,3 +166,4 @@ binds {
 	XF86AudioStop allow-when-locked=true { spawn "playerctl" "stop"; }
 }
 
+include optional=true "pc_only.kdl"
