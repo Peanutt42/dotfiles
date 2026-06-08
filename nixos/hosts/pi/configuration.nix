@@ -1,11 +1,12 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/cloudflared-tunnel.nix
-    ../../modules/nginx.nix
-    ../../modules/adguard-home.nix
+    ./cloudflared-tunnel.nix
+    ./nginx.nix
+    ./adguard-home.nix
+    ./octoprint.nix
     ../../modules/apps.nix
     ../../modules/development.nix
     ../../modules/gnupg.nix
@@ -30,6 +31,10 @@
 
   # see ../../modules/apps.nix
   headless = true;
+
+  environment.systemPackages = with pkgs; [
+    libraspberrypi
+  ];
 
   # since we downloaded pre release unstable nixos sd images
   system.stateVersion = lib.mkForce "26.05";
