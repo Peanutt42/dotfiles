@@ -9,6 +9,8 @@
         themeify
         stlviewer
         bedlevelvisualizer
+        costestimation
+        printtimegenius
       ];
   };
 }
