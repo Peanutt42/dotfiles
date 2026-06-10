@@ -22,18 +22,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
-
--- if nvim is opened with a directory argument, hand it to neotree instead
-vim.api.nvim_create_autocmd("VimEnter", {
-	callback = function()
-		local arg = vim.fn.argv(0)
-		if vim.fn.isdirectory(arg) == 1 then
-			vim.cmd("bd") -- close the directory buffer
-			require("neo-tree.command").execute({ action = "focus", dir = arg })
-		end
-	end,
-})
-
 -- short yank highlight animation
 vim.api.nvim_create_autocmd('TextYankPost', {
 	group = vim.api.nvim_create_augroup('custom-highlight-yank', { clear = true }),

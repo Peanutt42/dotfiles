@@ -12,6 +12,8 @@ return {
 	---@type neotree.Config
 	opts = {
 		enable_cursor_hijack = true,
+		hijack_netrw_behavior = "open_default",
+		auto_clean_after_session_restore = true,
 		window = {
 			position = "right",
 			mappings = {

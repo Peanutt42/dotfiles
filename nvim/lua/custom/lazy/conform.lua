@@ -11,30 +11,33 @@ return {
 			desc = '[F]ormat buffer',
 		},
 	},
-	config = function()
-		require("conform").setup({
-			notify_on_error = false,
-			format_on_save = function(_)
-				if vim.g.disable_format_on_save then
-					return
-				end
+	---@module 'conform'
+	---@type conform.setupOpts
+	opts = {
+		notify_on_error = false,
+		format_on_save = function(_)
+			if vim.g.disable_format_on_save then
+				return
+			end
 
-				return {
-					timeout_ms = 500,
-					lsp_format = 'fallback',
-				}
-			end,
-			formatters_by_ft = {
-				rust = { "rustfmt", lsp_format = "fallback" },
-				javascript = { "prettier" },
-				javascriptreact = { "prettier" },
-				typescript = { "prettier" },
-				typescriptreact = { "prettier" },
-				css = { "prettier" },
-				html = { "prettier" },
-				json = { "prettier" },
-			},
-		})
+			return {
+				timeout_ms = 500,
+				lsp_format = 'fallback',
+			}
+		end,
+		formatters_by_ft = {
+			rust = { "rustfmt", lsp_format = "fallback" },
+			javascript = { "prettier" },
+			javascriptreact = { "prettier" },
+			typescript = { "prettier" },
+			typescriptreact = { "prettier" },
+			css = { "prettier" },
+			html = { "prettier" },
+			json = { "prettier" },
+		},
+	},
+	config = function(_, opts)
+		require("conform").setup(opts)
 
 		vim.api.nvim_create_user_command(
 			"DisableFormatOnSave",

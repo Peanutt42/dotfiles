@@ -2,12 +2,13 @@
 return {
 	"windwp/nvim-autopairs",
 	event = "InsertEnter",
-	config = function()
+	opts = {
+		check_ts = true,
+		map_bs = false,
+	},
+	config = function(_, opts)
 		local npairs = require('nvim-autopairs')
-		npairs.setup({
-			check_ts = true,
-			map_bs = false,
-		})
+		npairs.setup(opts)
 
 		-- removes all whitespace in front of cursor if everything is just whitespace infront of the cursor
 		-- moves one line up, to the end of that line, inserting the removed whitespace if that line is empty

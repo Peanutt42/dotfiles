@@ -1,16 +1,43 @@
 -- Fuzzy file(/or anything) finder
 return {
 	"nvim-telescope/telescope.nvim",
-	config = function()
-		require("telescope").setup({})
-
-		local builtin = require("telescope.builtin")
-
-		vim.keymap.set("n", "<leader>ff", builtin.find_files, { noremap = true, silent = true })
-		vim.keymap.set("n", "<C-p>", builtin.find_files, { noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>fg", builtin.git_files, { noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>fs", builtin.live_grep, { noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>fb", builtin.buffers, { noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { noremap = true, silent = true })
-	end
+	keys = {
+		{
+			"<leader>ff",
+			function() require("telescope.builtin").find_files() end,
+			mode = "n",
+			desc = "Find files",
+		},
+		{
+			"<C-p>",
+			function() require("telescope.builtin").find_files() end,
+			mode = "n",
+			desc = "Find files",
+		},
+		{
+			"<leader>fg",
+			function() require("telescope.builtin").git_files() end,
+			mode = "n",
+			desc = "Git files",
+		},
+		{
+			"<leader>fs",
+			function() require("telescope.builtin").live_grep() end,
+			mode = "n",
+			desc = "Live grep",
+		},
+		{
+			"<leader>fb",
+			function() require("telescope.builtin").buffers() end,
+			mode = "n",
+			desc = "Buffers",
+		},
+		{
+			"<leader>fh",
+			function() require("telescope.builtin").help_tags() end,
+			mode = "n",
+			desc = "Help tags",
+		},
+	},
+	opts = {}
 }

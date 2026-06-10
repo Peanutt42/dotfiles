@@ -19,9 +19,11 @@ return {
 			desc = "Quickfix List (Trouble)",
 		},
 	},
+	---@module 'trouble'
+	---@type trouble.Config
 	opts = {
 		focus = true,
 		icons = { indent = { last = "╰╴" --[[rounded]] } },
-		use_diagnostic_signs = true,
+		use_diagnostic_signs = true
 	},
 }
