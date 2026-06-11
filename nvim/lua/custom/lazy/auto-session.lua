@@ -4,8 +4,11 @@ return {
 	---@module "auto-session"
 	---@type AutoSession.Config
 	opts = {
-		git_use_branch_name = true,
-		auto_restore_last_session = true,
+		-- while it would be nice to have this as true,
+		-- enabling this prevents auto_create from taking effect when launching with "nvim .",
+		-- as the single directory argument triggers a check whether cwd matches saved session,
+		-- which includes a "*|BRANCH_NAME", so the check always fails -> auto create/save is disabled
+		git_use_branch_name = false,
 		bypass_save_filetypes = { "neo-tree" },
 		post_restore_cmds = {
 			function()
@@ -15,8 +18,10 @@ return {
 				})
 			end
 		},
-		preserve_buffer_on_restore = function(bufnr)
-			return vim.api.nvim_get_option_value("buftype", { buf = bufnr }) == "neo-tree"
-		end
-	}
+	},
+	config = function(_, opts)
+		vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+		require('auto-session').setup(opts)
+	end
 }
