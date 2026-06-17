@@ -7,6 +7,8 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     git_progress_sync.url = "github:Peanutt42/git_progress_sync";
+
+    no_bs_habit_tracker.url = "github:Peanutt42/no_bs_habit_tracker";
   };
 
   outputs =
@@ -14,6 +16,7 @@
       nixpkgs,
       nixos-hardware,
       git_progress_sync,
+      no_bs_habit_tracker,
       ...
     }:
     let
@@ -33,7 +36,13 @@
               gwq-overlay
             ];
           };
-          modules = [ ./modules/shared.nix ] ++ modules;
+          modules = [
+            ./modules/shared.nix
+
+            # does not enable the service, just adds the option
+            no_bs_habit_tracker.nixosModules.default
+          ]
+          ++ modules;
         };
     in
     {
