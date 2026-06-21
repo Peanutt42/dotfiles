@@ -1,4 +1,20 @@
--- Filetree
+-- sorts files more naturally:
+-- for example file10.txt is AFTER file9.txt like we would expect
+local function custom_natural_sort(a, b)
+	local function normalize(s)
+		s = tostring(s or "")
+		return s:gsub("%d+", function(n)
+			return string.format("%020d", tonumber(n))
+		end):lower()
+	end
+
+	if a.type ~= b.type then
+		return a.type == "directory"
+	end
+
+	return normalize(a.path) < normalize(b.path)
+end
+
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
@@ -14,6 +30,7 @@ return {
 		enable_cursor_hijack = true,
 		hijack_netrw_behavior = "open_default",
 		auto_clean_after_session_restore = true,
+		sort_function = custom_natural_sort,
 		window = {
 			position = "right",
 			mappings = {
