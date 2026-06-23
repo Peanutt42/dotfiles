@@ -7,7 +7,7 @@ return {
 		-- from: https://github.com/nvim-lua/kickstart.nvim/blob/f0a2108ed51547793c758d9318bad94f242b22e5/init.lua#L907
 		config = function()
 			local parsers = {
-				"help", "vim", "vimdoc", "query", "regex", "markdown", "markdown_inline", "bash", "fish", "diff",
+				"vim", "vimdoc", "query", "regex", "markdown", "markdown_inline", "bash", "fish", "diff",
 				"c", "cpp", "lua", "luadoc", "rust", "vhdl", "haskell",
 				"java", "fish", "nix", "just", "typst",
 				-- web-dev:
