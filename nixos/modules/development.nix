@@ -39,6 +39,7 @@
     # lsp
     nixd
     nixfmt
+    tree-sitter
 
     typst
     typstyle
