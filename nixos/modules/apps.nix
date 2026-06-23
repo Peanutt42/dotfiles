@@ -35,6 +35,8 @@
         appimage-run
         steam
 
+        wl-clipboard # needed by tmux-yank
+
         thunderbird
         zapzap
         vesktop
