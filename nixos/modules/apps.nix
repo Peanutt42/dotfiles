@@ -50,7 +50,9 @@
 
         p3x-onenote
 
-        anki-bin
+        (anki.withAddons [
+          pkgs.ankiAddons.review-heatmap
+        ])
 
         spotify
 
