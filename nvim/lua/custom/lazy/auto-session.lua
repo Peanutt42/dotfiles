@@ -1,14 +1,11 @@
 return {
-	"rmagatti/auto-session",
+	-- TODO: replace with "rmagatti/auto-session" once our PR with the git_use_branch_name fix has been merged
+	"Peanutt42/auto-session",
 	lazy = false,
 	---@module "auto-session"
 	---@type AutoSession.Config
 	opts = {
-		-- while it would be nice to have this as true,
-		-- enabling this prevents auto_create from taking effect when launching with "nvim .",
-		-- as the single directory argument triggers a check whether cwd matches saved session,
-		-- which includes a "*|BRANCH_NAME", so the check always fails -> auto create/save is disabled
-		git_use_branch_name = false,
+		git_use_branch_name = true,
 		bypass_save_filetypes = { "neo-tree" },
 		post_restore_cmds = {
 			function()
