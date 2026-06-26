@@ -8,6 +8,7 @@
     ./adguard-home.nix
     ./octoprint.nix
     ./no_bs_habit_tracker.nix
+    ./vaultwarden.nix
     ../../modules/apps.nix
     ../../modules/development.nix
     ../../modules/gnupg.nix
