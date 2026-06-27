@@ -19,12 +19,6 @@ vim.api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = false, silent = true })
 -- clear search results with Esc
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { noremap = true, silent = true })
 
--- Ctrl + H/J/K/L to navigate panels
-vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
-
 -- Ctrl + n/p to go to next/prev buffer
 vim.keymap.set("n", "<C-n>", ":bnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-p>", ":bprevious<CR>", { noremap = true, silent = true })

@@ -7,7 +7,11 @@ return {
 		},
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		"L3MON4D3/LuaSnip",
+		{
+			"L3MON4D3/LuaSnip",
+			version = "v2.5",
+			build = "make install_jsregexp"
+		}
 	},
 	config = function()
 		local server_configs = require('custom.servers')

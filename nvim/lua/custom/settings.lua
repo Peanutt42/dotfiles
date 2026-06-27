@@ -22,7 +22,6 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = false
 vim.o.autoindent = true
 vim.o.smartindent = true
-vim.cmd("filetype plugin indent on")
 
 vim.o.colorcolumn = "80"
 vim.o.whichwrap = "b,s,h,l,<,>,[,]"

@@ -40,6 +40,11 @@
     nixd
     nixfmt
     tree-sitter
+    prettier
+    lua5_1
+    luarocks
+    wget
+    fd
 
     typst
     typstyle
