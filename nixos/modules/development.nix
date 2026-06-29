@@ -52,6 +52,12 @@
     tinymist
 
     cloudflared
+
+    # haskell
+    ghc
+    cabal-install
+    haskell-language-server
+    hlint
   ];
 
   programs.java = {

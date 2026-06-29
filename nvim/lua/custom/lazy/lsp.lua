@@ -40,6 +40,9 @@ return {
 				vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {
 					buffer = event.buf, desc = 'LSP: [G]oto [D]eclaration'
 				})
+				vim.keymap.set('n', 'grr', vim.lsp.buf.references, {
+					buffer = event.buf, desc = 'LSP: [G]oto [R]eferences'
+				})
 
 				-- enable inlay hints by default
 				vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
