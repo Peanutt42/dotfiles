@@ -1,8 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
+    ./wluma.nix
     ../../modules/niri.nix
     ../../modules/gnome.nix
     ../../modules/apps.nix

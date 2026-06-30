@@ -4,17 +4,32 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    git_progress_sync.url = "github:Peanutt42/git_progress_sync";
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    no_bs_habit_tracker.url = "github:Peanutt42/no_bs_habit_tracker";
+    git_progress_sync = {
+      url = "github:Peanutt42/git_progress_sync";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    no_bs_habit_tracker = {
+      url = "github:Peanutt42/no_bs_habit_tracker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       nixpkgs,
       nixos-hardware,
+      dms-plugin-registry,
       git_progress_sync,
       no_bs_habit_tracker,
       ...
@@ -43,6 +58,7 @@
             no_bs_habit_tracker.nixosModules.default
           ]
           ++ modules;
+          specialArgs = { inherit dms-plugin-registry; };
         };
     in
     {

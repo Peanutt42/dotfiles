@@ -1,0 +1,8 @@
+[als.iio]
+path = "/sys/bus/iio/devices"
+thresholds = { 0 = "night", 10 = "dark", 50 = "dim", 100 = "normal", 150 = "bright", 200 = "max" }
+
+[[output.backlight]]
+name = "eDP-1"
+path = "/sys/class/backlight/amdgpu_bl1"
+min_brightness = 5
