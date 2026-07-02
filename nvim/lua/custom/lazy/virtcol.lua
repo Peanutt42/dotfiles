@@ -1,6 +1,7 @@
 -- custom super thin 80-char indication bar
 return {
 	"lukas-reineke/virt-column.nvim",
+	event = { "BufReadPre", "BufNewFile" },
 	---@module 'virt-column'
 	---@type virtcolumn.config
 	opts = {

@@ -36,6 +36,7 @@ local bubbles_theme = {
 -- styles and auto hides the status line
 return {
 	'nvim-lualine/lualine.nvim',
+	event = "VeryLazy",
 	dependencies = { 'nvim-tree/nvim-web-devicons' },
 	opts = {
 		options = {

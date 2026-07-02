@@ -4,6 +4,7 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.o.number = true
 vim.o.relativenumber = true
+vim.cmd('syntax on')
 vim.o.termguicolors = true
 vim.o.scrolloff = 10
 vim.o.sidescrolloff = 10

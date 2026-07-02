@@ -1,6 +1,6 @@
 return {
 	'chomosuke/typst-preview.nvim',
-	lazy = false,
+	ft = "typst",
 	version = '1.*',
 	opts = {
 		-- chrome, because i dont use chrome for anything else -> doesnt hijack my zen browser window
