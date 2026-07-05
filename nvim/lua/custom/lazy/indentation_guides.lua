@@ -1,7 +1,7 @@
 -- indentation guides
 return {
 	"lukas-reineke/indent-blankline.nvim",
-	event = { "BufReadPre", "BufNewFile" },
+	event = { "BufReadPre", "BufNewFile", "BufNew", "BufEnter" },
 	main = "ibl",
 	---@module "ibl"
 	---@type ibl.config

@@ -1,7 +1,7 @@
 return {
 	"nvim-mini/mini.move",
 	version = "*",
-	event = { "BufReadPre", "BufNewFile" },
+	event = { "BufReadPre", "BufNewFile", "BufNew", "BufEnter" },
 	opts = {
 		-- Alt + h/j/k/l to move code selection
 		mappings = {
