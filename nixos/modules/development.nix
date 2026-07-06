@@ -28,6 +28,7 @@
 
     git
     lazygit
+    delta # syntax highlighter for (lazy-)git
     gh
     git_progress_sync # not in nixpkgs, but added using overlay (see ../flake.nix)
 
