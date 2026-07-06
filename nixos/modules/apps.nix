@@ -84,6 +84,9 @@
         # font
         nerd-fonts.jetbrains-mono
 
+        # icons
+        tela-icon-theme
+
         # cisco anyconnect vpn: uni-ulm
         openconnect
         networkmanager-openconnect
