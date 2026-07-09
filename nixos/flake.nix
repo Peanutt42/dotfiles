@@ -37,6 +37,7 @@
     let
       tmux-fork-overlay = import ./overlays/tmux-fork.nix;
       gwq-overlay = import ./overlays/gwq.nix;
+      bitwarden-desktop-overlay = import ./overlays/bitwarden-desktop.nix;
 
       mkSystem =
         { system, modules }:
@@ -44,11 +45,18 @@
           inherit system;
           pkgs = import nixpkgs {
             inherit system;
-            config.allowUnfree = true;
+            config = {
+              allowUnfree = true;
+              permittedInsecurePackages = [
+                # since bitwarden uses EOL electron
+                "electron-39.8.10"
+              ];
+            };
             overlays = [
               tmux-fork-overlay
               git_progress_sync.overlays.default
               gwq-overlay
+              bitwarden-desktop-overlay
             ];
           };
           modules = [
