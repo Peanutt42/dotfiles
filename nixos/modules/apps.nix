@@ -100,6 +100,10 @@
 
     services.flatpak.enable = lib.mkIf (!config.headless) true;
 
+    services.tailscale = {
+      enable = true;
+    };
+
     programs.localsend = {
       enable = !config.headless;
       openFirewall = true;
