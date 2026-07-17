@@ -30,6 +30,8 @@
         gwq # build from source (see ../overlays/gwq/overlay.nix)
 
         podman
+
+        openstackclient
       ]
       ++ lib.optionals (!config.headless) [
         appimage-run

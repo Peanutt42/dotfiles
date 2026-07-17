@@ -27,6 +27,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       nixos-hardware,
       dms-plugin-registry,
@@ -99,5 +100,24 @@
           ./hosts/pi/configuration.nix
         ];
       };
+
+      packages.x86_64-linux.bwcloud-qcow2 =
+        let
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          bw-cloud = mkSystem {
+            system = "x86_64-linux";
+            modules = [
+              ./hosts/bwcloud/configuration.nix
+            ];
+          };
+        in
+        pkgs.callPackage "${nixpkgs}/nixos/lib/make-disk-image.nix" {
+          inherit pkgs;
+          lib = pkgs.lib;
+
+          config = bw-cloud.config;
+
+          format = "qcow2";
+        };
     };
 }

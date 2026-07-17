@@ -1,0 +1,3 @@
+
+# result of "nix build .#qcow -o bwcloud_qcow2"
+bwcloud-qcow2
