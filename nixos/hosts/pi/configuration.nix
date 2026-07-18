@@ -10,6 +10,7 @@
     ./no_bs_habit_tracker.nix
     ./vaultwarden.nix
     ./anki-sync-server.nix
+    ./vikunja.nix
     ../../modules/apps.nix
     ../../modules/development.nix
     ../../modules/gnupg.nix
