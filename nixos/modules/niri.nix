@@ -3,6 +3,8 @@
 {
   imports = [ dms-plugin-registry.nixosModules.default ];
 
+  services.displayManager.defaultSession = "niri";
+
   programs.niri.enable = true;
   programs.dms-shell = {
     enable = true;

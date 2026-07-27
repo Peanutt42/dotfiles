@@ -1,68 +1,85 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 {
-  programs.fish.enable = true;
+  options = {
+    full = lib.mkOption {
+      default = true;
+      description = "whether to include tools like ghc, hls, jdk, gradle, maven, etc.";
+    };
+  };
 
-  environment.systemPackages = with pkgs; [
-    rustup
-    gcc
-    clang
-    clang-tools
-    cmake
-    gnumake
-    ninja
-    pkg-config
-    python3
-    just
-    nodejs
+  config = {
+    programs.fish.enable = true;
 
-    direnv
+    environment.systemPackages =
+      with pkgs;
+      [
+        rustup
+        gcc
+        clang
+        clang-tools
+        cmake
+        gnumake
+        ninja
+        pkg-config
+        python3
+        just
+        nodejs
 
-    jdk21
-    maven
-    gradle
+        direnv
 
-    cargo-tauri
-    sqlx-cli
-    trunk
+        git
+        lazygit
+        delta # syntax highlighter for (lazy-)git
+        gh
+        git_progress_sync # not in nixpkgs, but added using overlay (see ../flake.nix)
 
-    git
-    lazygit
-    delta # syntax highlighter for (lazy-)git
-    gh
-    git_progress_sync # not in nixpkgs, but added using overlay (see ../flake.nix)
+        util-linux
 
-    util-linux
+        neovim
+        ripgrep
+        fzf
+        # lsp
+        nixd
+        nixfmt
+        tree-sitter
+        prettier
+        lua5_1
+        luarocks
+        wget
+        fd
 
-    neovim
-    ripgrep
-    fzf
-    # lsp
-    nixd
-    nixfmt
-    tree-sitter
-    prettier
-    lua5_1
-    luarocks
-    wget
-    fd
+        cloudflared
+      ]
+      ++ lib.optionals (config.full) [
+        jdk21
+        maven
+        gradle
 
-    typst
-    typstyle
-    typst-live
-    tinymist
+        cargo-tauri
+        sqlx-cli
+        trunk
 
-    cloudflared
+        typst
+        typstyle
+        typst-live
+        tinymist
 
-    # haskell
-    ghc
-    cabal-install
-    haskell-language-server
-    hlint
-  ];
+        # haskell
+        ghc
+        cabal-install
+        haskell-language-server
+        hlint
+      ];
 
-  programs.java = {
-    enable = true;
-    package = pkgs.jdk21;
+    programs.java = {
+      enable = config.full;
+      package = pkgs.jdk21;
+    };
   };
 }

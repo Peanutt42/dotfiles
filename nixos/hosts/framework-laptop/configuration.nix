@@ -6,6 +6,7 @@
     ./wluma.nix
     ../../modules/niri.nix
     ../../modules/gnome.nix
+    ../../modules/sddm.nix
     ../../modules/apps.nix
     ../../modules/development.nix
     ../../modules/onedrive-rclone.nix
@@ -28,4 +29,6 @@
     gdm.fprintAuth = true;
     gdm-password.fprintAuth = true;
   };
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }

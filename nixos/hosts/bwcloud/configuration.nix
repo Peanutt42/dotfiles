@@ -10,6 +10,8 @@
 
   # see ../../modules/apps.nix
   headless = true;
+  # see ../../modules/development.nix
+  full = false;
 
   networking.hostName = "bwcloud";
 

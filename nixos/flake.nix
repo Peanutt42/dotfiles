@@ -23,6 +23,11 @@
       url = "github:Peanutt42/no_bs_habit_tracker";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -33,6 +38,7 @@
       dms-plugin-registry,
       git_progress_sync,
       no_bs_habit_tracker,
+      silentSDDM,
       ...
     }:
     let
@@ -65,6 +71,8 @@
 
             # does not enable the service, just adds the option
             no_bs_habit_tracker.nixosModules.default
+
+            silentSDDM.nixosModules.default
           ]
           ++ modules;
           specialArgs = { inherit dms-plugin-registry; };
@@ -100,22 +108,22 @@
           ./hosts/pi/configuration.nix
         ];
       };
+      nixosConfigurations.bwcloud = mkSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/bwcloud/configuration.nix
+        ];
+      };
 
       packages.x86_64-linux.bwcloud-qcow2 =
         let
           pkgs = import nixpkgs { system = "x86_64-linux"; };
-          bw-cloud = mkSystem {
-            system = "x86_64-linux";
-            modules = [
-              ./hosts/bwcloud/configuration.nix
-            ];
-          };
         in
         pkgs.callPackage "${nixpkgs}/nixos/lib/make-disk-image.nix" {
           inherit pkgs;
           lib = pkgs.lib;
 
-          config = bw-cloud.config;
+          config = self.nixosConfigurations.bwcloud.config;
 
           format = "qcow2";
         };

@@ -35,6 +35,8 @@
 
   # see ../../modules/apps.nix
   headless = true;
+  # see ../../modules/development.nix
+  full = false;
 
   environment.systemPackages = with pkgs; [
     libraspberrypi

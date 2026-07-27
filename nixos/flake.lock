@@ -214,11 +214,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1781821134,
-        "narHash": "sha256-EChBxCYnt22X9/EnGcVUCQG9WdUsJMydpoiBQFBD/Sk=",
+        "lastModified": 1784719827,
+        "narHash": "sha256-MOBZLscZpTcrH2jBCxyFRusB1OUfymVoSzeWNVPsh/k=",
         "owner": "Peanutt42",
         "repo": "no_bs_habit_tracker",
-        "rev": "ee71058e80ef9bb22a27be222627b3f312d4c402",
+        "rev": "0dc4fd0cd5fa2c1434c9f237c98d7260d0b485fd",
         "type": "github"
       },
       "original": {
@@ -233,7 +233,8 @@
         "git_progress_sync": "git_progress_sync",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
-        "no_bs_habit_tracker": "no_bs_habit_tracker"
+        "no_bs_habit_tracker": "no_bs_habit_tracker",
+        "silentSDDM": "silentSDDM"
       }
     },
     "rust-analyzer-src": {
@@ -286,6 +287,26 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "silentSDDM": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785015872,
+        "narHash": "sha256-7dTNd8o3xInMXSBRkRCkHAGQc+e0mrlljDGTXKhk6I0=",
+        "owner": "uiriansan",
+        "repo": "SilentSDDM",
+        "rev": "da69191d32721c1f093d13bfd803e8d8000bd712",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uiriansan",
+        "repo": "SilentSDDM",
         "type": "github"
       }
     },

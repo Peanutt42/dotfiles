@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ../../modules/niri.nix
     ../../modules/gnome.nix
+    ../../modules/sddm.nix
     ../../modules/apps.nix
     ../../modules/development.nix
     ../../modules/onedrive-rclone.nix
