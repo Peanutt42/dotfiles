@@ -115,6 +115,9 @@ window-rule {
     match app-id="com.mitchellh.ghostty"
     match app-id="kitty"
     draw-border-with-background false
+	background-effect {
+		blur true
+	}
 }
 window-rule {
 	match app-id=r#"^app\.zen_browser\.zen$"#
@@ -144,6 +147,20 @@ recent-windows {
         Alt+Shift+Tab   { previous-window scope="output"; }
         Alt+grave       { next-window filter="app-id"; }
         Alt+Shift+grave { previous-window filter="app-id"; }
+    }
+}
+
+animations {
+    slowdown 1.25
+
+    window-open {
+        duration-ms 250
+        curve "ease-out-expo"
+    }
+
+    window-close {
+        duration-ms 250
+        curve "ease-out-quad"
     }
 }
 
