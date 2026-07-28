@@ -11,9 +11,11 @@
     ./vaultwarden.nix
     ./anki-sync-server.nix
     ./vikunja.nix
+    ./restic.nix
     ../../modules/apps.nix
     ../../modules/development.nix
     ../../modules/gnupg.nix
+    ../../modules/onedrive-rclone.nix
   ];
 
   networking.hostName = "peter-pi";
@@ -30,7 +32,10 @@
   # SSH
   services.openssh = {
     enable = true;
-    settings.PasswordAuthentication = true;
+    settings = {
+      PasswordAuthentication = true;
+      PermitRootLogin = "yes";
+    };
   };
 
   # see ../../modules/apps.nix
