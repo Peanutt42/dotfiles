@@ -12,7 +12,10 @@ let
   systemdServiceUnits = map lib.toLower services;
 in
 {
-  environment.systemPackages = [ pkgs.restic ];
+  environment.systemPackages = with pkgs; [
+    restic
+    backrest
+  ];
 
   services.restic.backups.onedrive = {
     user = "root";
@@ -37,5 +40,26 @@ in
       "--keep-monthly 12"
       "--keep-yearly 2"
     ];
+  };
+
+  # web ui interface for restic
+  systemd.services.backrest = {
+    description = "Launch backrest to take care of backups";
+    wantedBy = [ "default.target" ];
+    requires = [ "network-online.target" ];
+    script = "backrest";
+    path = [ pkgs.backrest ];
+    environment = {
+      BACKREST_PORT = "0.0.0.0:9898";
+    };
+    serviceConfig = {
+      Type = "simple";
+      User = "root";
+      # AmbientCapabilities = "CAP_DAC_READ_SEARCH";
+      # CapabilityBoundingSet = "CAP_DAC_READ_SEARCH";
+      # ExecStart = "backrest";
+      # It’s often a good idea to mark the service active after the command finishes.
+      # RemainAfterExit = true;
+    };
   };
 }
