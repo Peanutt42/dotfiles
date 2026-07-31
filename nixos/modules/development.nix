@@ -34,6 +34,7 @@
         direnv
 
         git
+        git-lfs
         lazygit
         delta # syntax highlighter for (lazy-)git
         gh
