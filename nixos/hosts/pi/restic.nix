@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   services = [
@@ -21,7 +26,7 @@ in
     user = "root";
     repository = "rclone:OneDrive:/Backups/pi";
     initialize = true;
-    passwordFile = "/home/peter/restic-password-file.txt"; # temporary till sops
+    passwordFile = config.sops.secrets."restic/password".path;
     rcloneConfigFile = "/home/peter/.config/rclone/rclone.conf";
 
     paths = map (s: "/var/lib/" + s) services ++ [ "/var/lib/private" ];

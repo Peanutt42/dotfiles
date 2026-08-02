@@ -28,6 +28,11 @@
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -39,6 +44,7 @@
       git_progress_sync,
       no_bs_habit_tracker,
       silentSDDM,
+      sops-nix,
       ...
     }:
     let
@@ -71,6 +77,8 @@
             no_bs_habit_tracker.nixosModules.default
 
             silentSDDM.nixosModules.default
+
+            sops-nix.nixosModules.sops
           ]
           ++ modules;
           specialArgs = { inherit dms-plugin-registry; };
@@ -102,7 +110,7 @@
       nixosConfigurations.pi = mkSystem {
         system = "aarch64-linux";
         modules = [
-          # nixos-hardware.nixosModules.raspberry-pi-4
+          nixos-hardware.nixosModules.raspberry-pi-4
           ./hosts/pi/configuration.nix
         ];
       };

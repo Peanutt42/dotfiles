@@ -16,6 +16,11 @@
   config = {
     programs.fish.enable = true;
 
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
+
     environment.systemPackages =
       with pkgs;
       [
@@ -56,6 +61,8 @@
         fd
 
         cloudflared
+
+        sops
       ]
       ++ lib.optionals (config.full) [
         jdk21

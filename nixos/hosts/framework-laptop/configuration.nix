@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ config, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ./wluma.nix
+    ./wluma
     ../../modules/niri.nix
     ../../modules/gnome.nix
     ../../modules/sddm.nix
@@ -12,6 +12,7 @@
     ../../modules/onedrive-rclone.nix
     ../../modules/ai-tools.nix
     ../../modules/gnupg.nix
+    ../../modules/eduroam
   ];
 
   networking.hostName = "peter-framework-laptop";
@@ -31,4 +32,13 @@
   };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  services.networking.eduroam = {
+    enable = true;
+    user = "peter";
+    domainFile = config.sops.secrets."eduroam/domain".path;
+    radiusFile = config.sops.secrets."eduroam/domain".path;
+    identityFile = config.sops.secrets."eduroam/identity".path;
+    passwordFile = config.sops.secrets."eduroam/password".path;
+  };
 }

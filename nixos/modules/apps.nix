@@ -41,6 +41,7 @@
 
         thunderbird
         zapzap
+        signal-desktop
         vesktop
 
         bitwarden-desktop
@@ -55,8 +56,6 @@
         (anki.withAddons [
           pkgs.ankiAddons.review-heatmap
         ])
-
-        spotify
 
         libreoffice
 

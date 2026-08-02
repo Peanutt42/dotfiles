@@ -1,0 +1,23 @@
+keys:
+  - &admin age10dswr2ytvjkys8wm5exnu0m5sa0vhzqjl8d9dqptnxct59h8w9vq8gg2rm
+  - &host_framework_laptop age10rscjxfx4kde8fuyuzqd7en5ym7x6yt32sl5l29zz9c63xhdcfnqgf09h3
+  - &host_pc age1gzpqvhhjeu7vhlrlpwsvk3qg3svahmwqnq7c4cm05jcvu8raq3jsygsxd8
+  - &host_pi age1wu9uane95hwldjdkm8srxxunkjurzv9xfkg6xmn9kmkryshecguqaft4vd
+  - &host_bwcloud age1dpw96fdsldtceddgnn9d80x842vn4zf3tcfapff74rf4cdjy2yesqkh2ah
+
+creation_rules:
+  - path_regex: secrets/eduroam.yaml$
+    key_groups:
+    - age:
+      - *admin
+      - *host_framework_laptop
+  - path_regex: secrets/anki-sync-server.yaml$
+    key_groups:
+    - age:
+      - *admin
+      - *host_pi
+  - path_regex: secrets/restic.yaml$
+    key_groups:
+    - age:
+      - *admin
+      - *host_pi
