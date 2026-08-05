@@ -4,14 +4,14 @@
   imports = [
     ./hardware-configuration.nix
     ./cloudflared-tunnel.nix
-    ./nginx.nix
-    ./adguard-home.nix
-    ./octoprint.nix
-    ./no_bs_habit_tracker.nix
-    ./vaultwarden.nix
-    ./anki-sync-server.nix
-    ./vikunja.nix
-    ./restic.nix
+    ../../modules/nginx.nix
+    ../../modules/adguard-home.nix
+    ../../modules/octoprint.nix
+    ../../modules/no_bs_habit_tracker.nix
+    ../../modules/vaultwarden.nix
+    ../../modules/anki-sync-server.nix
+    ../../modules/vikunja.nix
+    ../../modules/restic.nix
     ../../modules/apps.nix
     ../../modules/development.nix
     ../../modules/gnupg.nix

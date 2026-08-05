@@ -33,11 +33,18 @@
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  sops.secrets = {
+    "eduroam/domain".sopsFile = ../../secrets/eduroam.yaml;
+    "eduroam/radius".sopsFile = ../../secrets/eduroam.yaml;
+    "eduroam/identity".sopsFile = ../../secrets/eduroam.yaml;
+    "eduroam/password".sopsFile = ../../secrets/eduroam.yaml;
+  };
+
   services.networking.eduroam = {
     enable = true;
     user = "peter";
     domainFile = config.sops.secrets."eduroam/domain".path;
-    radiusFile = config.sops.secrets."eduroam/domain".path;
+    radiusFile = config.sops.secrets."eduroam/radius".path;
     identityFile = config.sops.secrets."eduroam/identity".path;
     passwordFile = config.sops.secrets."eduroam/password".path;
   };

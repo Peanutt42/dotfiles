@@ -15,6 +15,8 @@
 
   networking.hostName = "peter-pc";
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # SSH
   services.openssh = {
     enable = true;

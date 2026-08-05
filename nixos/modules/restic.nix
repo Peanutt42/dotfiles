@@ -22,6 +22,8 @@ in
     backrest
   ];
 
+  sops.secrets."restic/password".sopsFile = ../secrets/restic.yaml;
+
   services.restic.backups.onedrive = {
     user = "root";
     repository = "rclone:OneDrive:/Backups/pi";
