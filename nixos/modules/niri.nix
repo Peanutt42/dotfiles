@@ -24,5 +24,6 @@
     xwayland-satellite # for X11 support on Wayland
     playerctl # for play/pause/prev/next etc. audio controls
     libqalculate # for calculator plugin
+    pulseaudioFull # mainly for bluetooth audio codec
   ];
 }

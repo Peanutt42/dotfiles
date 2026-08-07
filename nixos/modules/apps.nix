@@ -63,8 +63,6 @@
 
         kitty
 
-        sioyek
-
         mission-center
 
         winboat
