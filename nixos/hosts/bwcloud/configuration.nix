@@ -1,4 +1,9 @@
-{ lib, modulesPath, ... }:
+{
+  config,
+  lib,
+  modulesPath,
+  ...
+}:
 
 {
   imports = [
@@ -8,9 +13,13 @@
     ../../modules/development.nix
     ../../modules/cloudflared-tunnel.nix
     ../../modules/restic.nix
+    ../../modules/onedrive-rclone.nix
     ../../modules/uptime-kuma.nix
     ../../modules/grafana.nix
   ];
+
+  # openstack has some spellcheck warnings
+  systemd.enableStrictShellChecks = lib.mkForce false;
 
   # see ../../modules/apps.nix
   apps.headless = true;
@@ -19,10 +28,15 @@
   # see ../../modules/cloudflared-tunnel.nix
   cloudflared-tunnel.tunnelID = "69cac2c6-6166-4977-91bb-96383425e6d3";
   # see ../../modules/restic.nix
-  restic.serviceNames = [
-    "uptime-kuma"
-    "grafana"
-  ];
+  restic = {
+    passwordFile = config.sops.secrets."restic/bwcloud/password".path;
+    rcloneOneDrivePath = "/Backups/bwcloud";
+    serviceNames = [
+      "uptime-kuma"
+      "grafana"
+    ];
+  };
+  sops.secrets."restic/bwcloud/password".sopsFile = ../../secrets/restic.yaml;
 
   networking.hostName = "bwcloud";
 

@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -15,6 +20,7 @@
     ../../modules/gnupg.nix
     ../../modules/onedrive-rclone.nix
     ../../modules/cloudflared-tunnel.nix
+    ../../modules/kosync.nix
   ];
 
   networking.hostName = "peter-pi";
@@ -44,13 +50,19 @@
   # see ../../modules/cloudflared-tunnel.nix
   cloudflared-tunnel.tunnelID = "4ca9765d-1875-4d76-bf02-7e4c88257fbe";
   # see ../../modules/restic.nix
-  restic.serviceNames = [
-    "AdGuardHome"
-    "anki-sync-server"
-    "octoprint"
-    "vaultwarden"
-    "vikunja"
-  ];
+  restic = {
+    passwordFile = config.sops.secrets."restic/pi/password".path;
+    rcloneOneDrivePath = "/Backups/pi";
+    serviceNames = [
+      "AdGuardHome"
+      "anki-sync-server"
+      "octoprint"
+      "vaultwarden"
+      "vikunja"
+      "kosync"
+    ];
+  };
+  sops.secrets."restic/pi/password".sopsFile = ../../secrets/restic.yaml;
 
   environment.systemPackages = with pkgs; [
     libraspberrypi

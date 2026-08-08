@@ -7,6 +7,12 @@
 
 {
   options.restic = {
+    passwordFile = lib.mkOption {
+      type = lib.types.str;
+    };
+    rcloneOneDrivePath = lib.mkOption {
+      type = lib.types.str;
+    };
     serviceNames = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];
@@ -23,13 +29,11 @@
       backrest
     ];
 
-    sops.secrets."restic/password".sopsFile = ../secrets/restic.yaml;
-
     services.restic.backups.onedrive = {
       user = "root";
-      repository = "rclone:OneDrive:/Backups/pi";
+      repository = "rclone:OneDrive:${config.restic.rcloneOneDrivePath}";
       initialize = true;
-      passwordFile = config.sops.secrets."restic/password".path;
+      passwordFile = config.restic.passwordFile;
       rcloneConfigFile = "/home/peter/.config/rclone/rclone.conf";
 
       paths = map (s: "/var/lib/" + s) config.restic.serviceNames ++ [ "/var/lib/private" ];

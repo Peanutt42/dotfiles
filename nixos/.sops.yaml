@@ -21,6 +21,7 @@ creation_rules:
     - age:
       - *admin
       - *host_pi
+      - *host_bwcloud
   - path_regex: secrets/grafana.yaml$
     key_groups:
     - age:
