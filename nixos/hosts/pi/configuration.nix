@@ -3,11 +3,9 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./cloudflared-tunnel.nix
     ../../modules/nginx.nix
     ../../modules/adguard-home.nix
     ../../modules/octoprint.nix
-    ../../modules/no_bs_habit_tracker.nix
     ../../modules/vaultwarden.nix
     ../../modules/anki-sync-server.nix
     ../../modules/vikunja.nix
@@ -16,6 +14,7 @@
     ../../modules/development.nix
     ../../modules/gnupg.nix
     ../../modules/onedrive-rclone.nix
+    ../../modules/cloudflared-tunnel.nix
   ];
 
   networking.hostName = "peter-pi";
@@ -39,9 +38,19 @@
   };
 
   # see ../../modules/apps.nix
-  headless = true;
+  apps.headless = true;
   # see ../../modules/development.nix
-  full = false;
+  development.full = false;
+  # see ../../modules/cloudflared-tunnel.nix
+  cloudflared-tunnel.tunnelID = "4ca9765d-1875-4d76-bf02-7e4c88257fbe";
+  # see ../../modules/restic.nix
+  restic.serviceNames = [
+    "AdGuardHome"
+    "anki-sync-server"
+    "octoprint"
+    "vaultwarden"
+    "vikunja"
+  ];
 
   environment.systemPackages = with pkgs; [
     libraspberrypi

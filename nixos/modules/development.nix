@@ -6,7 +6,7 @@
 }:
 
 {
-  options = {
+  options.development = {
     full = lib.mkOption {
       default = true;
       description = "whether to include tools like ghc, hls, jdk, gradle, maven, etc.";
@@ -64,7 +64,7 @@
 
         sops
       ]
-      ++ lib.optionals (config.full) [
+      ++ lib.optionals (config.development.full) [
         jdk21
         maven
         gradle
@@ -86,7 +86,7 @@
       ];
 
     programs.java = {
-      enable = config.full;
+      enable = config.development.full;
       package = pkgs.jdk21;
     };
   };

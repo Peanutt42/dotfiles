@@ -6,7 +6,7 @@
 }:
 
 {
-  options = {
+  options.apps = {
     headless = lib.mkOption {
       default = false;
     };
@@ -33,7 +33,7 @@
 
         openstackclient
       ]
-      ++ lib.optionals (!config.headless) [
+      ++ lib.optionals (!config.apps.headless) [
         appimage-run
         steam
 
@@ -95,16 +95,16 @@
         orca-slicer
       ];
 
-    programs.firefox.enable = lib.mkIf (!config.headless) true;
+    programs.firefox.enable = lib.mkIf (!config.apps.headless) true;
 
-    services.flatpak.enable = lib.mkIf (!config.headless) true;
+    services.flatpak.enable = lib.mkIf (!config.apps.headless) true;
 
     services.tailscale = {
       enable = true;
     };
 
     programs.localsend = {
-      enable = !config.headless;
+      enable = !config.apps.headless;
       openFirewall = true;
     };
   };

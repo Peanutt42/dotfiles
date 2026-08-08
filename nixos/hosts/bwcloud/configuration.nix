@@ -6,12 +6,23 @@
     "${modulesPath}/virtualisation/openstack-config.nix"
     ../../modules/apps.nix
     ../../modules/development.nix
+    ../../modules/cloudflared-tunnel.nix
+    ../../modules/restic.nix
+    ../../modules/uptime-kuma.nix
+    ../../modules/grafana.nix
   ];
 
   # see ../../modules/apps.nix
-  headless = true;
+  apps.headless = true;
   # see ../../modules/development.nix
-  full = false;
+  development.full = false;
+  # see ../../modules/cloudflared-tunnel.nix
+  cloudflared-tunnel.tunnelID = "69cac2c6-6166-4977-91bb-96383425e6d3";
+  # see ../../modules/restic.nix
+  restic.serviceNames = [
+    "uptime-kuma"
+    "grafana"
+  ];
 
   networking.hostName = "bwcloud";
 
