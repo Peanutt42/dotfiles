@@ -10,6 +10,14 @@
     openFirewall = true;
 
     settings = {
+      users = [
+        {
+          name = "root";
+          # BCrypt-encrypted
+          password = "$2y$10$4Ba5q44vuVxFxkDKidd0.u5iLf1ZNsHqvTvojgL5bpS/KJXkA9wxa";
+        }
+      ];
+
       dns = {
         port = 53;
 
