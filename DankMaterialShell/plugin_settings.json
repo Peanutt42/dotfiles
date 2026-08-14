@@ -1,0 +1,13 @@
+{
+  "calculator": {
+    "enabled": true,
+    "trigger": "=",
+    "calcEngine": "qalc"
+  },
+  "dankBatteryAlerts": {
+    "enabled": true
+  },
+  "nixPackageRunner": {
+    "enabled": true
+  }
+}
