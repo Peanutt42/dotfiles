@@ -19,6 +19,7 @@
         unzip
         starship
         zoxide
+        eza
         fastfetch
         stow
         htop
