@@ -20,6 +20,7 @@
         starship
         zoxide
         eza
+        bat
         fastfetch
         stow
         htop
