@@ -34,6 +34,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    tmux-sessionizer = {
+      url = "github:Peanutt42/tmux-sessionizer/feat/create-windows-for-worktrees";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     oniri = {
       url = "github:Peanutt42/oniri/feat/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +55,7 @@
       no_bs_habit_tracker,
       silentSDDM,
       sops-nix,
+      tmux-sessionizer,
       oniri,
       ...
     }:
@@ -74,6 +80,7 @@
               tmux-fork-overlay
               git_progress_sync.overlays.default
               gwq-overlay
+              tmux-sessionizer.overlays.default
               oniri.overlays.default
             ];
           };

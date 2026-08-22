@@ -1,6 +1,8 @@
 display_full_path = true
 search_submodules = false
 recursive_submodules = false
+list_worktrees = true
+create_windows_for_worktrees = false
 
 [[search_dirs]]
 path = "/home/peter/Projects"
