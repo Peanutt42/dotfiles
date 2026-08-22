@@ -33,6 +33,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    oniri = {
+      url = "github:Peanutt42/oniri/feat/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -45,6 +50,7 @@
       no_bs_habit_tracker,
       silentSDDM,
       sops-nix,
+      oniri,
       ...
     }:
     let
@@ -68,6 +74,7 @@
               tmux-fork-overlay
               git_progress_sync.overlays.default
               gwq-overlay
+              oniri.overlays.default
             ];
           };
           modules = [

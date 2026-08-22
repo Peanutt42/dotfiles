@@ -71,8 +71,9 @@ blur {
 	noise 0.02
 }
 
-spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
-spawn-at-startup "bash" "-c" "python3 ~/.config/niri/dynamic-open-float.py"
+spawn-sh-at-startup "wl-paste --watch cliphist store &"
+spawn-sh-at-startup "python3 ~/.config/niri/dynamic-open-float.py"
+spawn-sh-at-startup "oniri -R"
 environment {
   XDG_CURRENT_DESKTOP "niri"
 }

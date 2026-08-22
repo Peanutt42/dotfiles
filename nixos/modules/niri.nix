@@ -25,5 +25,6 @@
     playerctl # for play/pause/prev/next etc. audio controls
     libqalculate # for calculator plugin
     pulseaudioFull # mainly for bluetooth audio codec
+    oniri # forked, see flake inputs
   ];
 }
