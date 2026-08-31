@@ -177,11 +177,11 @@ binds {
 	Mod+Alt+K { focus-window-up; }
 
 	// Play/Pause/Prev/Next Audio
-	XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
-	XF86AudioPause allow-when-locked=true { spawn "playerctl" "pause"; }
+	XF86AudioPlay allow-when-locked=true { spawn-sh "~/.config/niri/playerctl_play_pause.sh"; }
+	XF86AudioPause allow-when-locked=true { spawn "playerctl" "--all-players" "pause"; }
 	XF86AudioPrev allow-when-locked=true { spawn "playerctl" "previous"; }
 	XF86AudioNext allow-when-locked=true { spawn "playerctl" "next"; }
-	XF86AudioStop allow-when-locked=true { spawn "playerctl" "stop"; }
+	XF86AudioStop allow-when-locked=true { spawn "playerctl" "--all-players" "stop"; }
 
 	// Mod+B to spawn Zen Browser, Mod+Shift+B for inkognito
 	Mod+B { spawn "app.zen_browser.zen"; }
