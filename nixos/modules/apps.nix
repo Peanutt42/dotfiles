@@ -62,6 +62,7 @@
         libreoffice
 
         gimp
+        inkscape
 
         kitty
 
