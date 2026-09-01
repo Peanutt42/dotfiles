@@ -145,7 +145,7 @@
 
           config = self.nixosConfigurations.bwcloud.config;
 
-          format = "qcow2";
+          format = "qcow2-compressed";
         };
     };
 }
