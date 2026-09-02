@@ -8,5 +8,5 @@
 if playerctl --all-players status 2>/dev/null | grep -q '^Playing$'; then
     playerctl --all-players pause
 else
-    playerctl --player=spotify play
+    playerctl play
 fi
