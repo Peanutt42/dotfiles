@@ -44,6 +44,7 @@
         thunderbird
         zapzap
         signal-desktop
+        slack
         vesktop
 
         bitwarden-desktop
