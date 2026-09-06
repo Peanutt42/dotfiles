@@ -1,116 +1,29 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ pkgs, ... }:
 
 {
-  options.apps = {
-    headless = lib.mkOption {
-      default = false;
-    };
-  };
+  environment.systemPackages = with pkgs; [
+    unzip
+    starship
+    zoxide
+    eza
+    bat
+    fastfetch
+    stow
+    htop
+    btop
 
-  config = {
-    environment.systemPackages =
-      with pkgs;
-      [
-        unzip
-        starship
-        zoxide
-        eza
-        bat
-        fastfetch
-        stow
-        htop
-        btop
+    tmux # forked version! (see ../overlays/tmux-fork.nix)
+    tmux-sessionizer
 
-        tmux # forked version! (see ../overlays/tmux-fork.nix)
-        tmux-sessionizer
+    gwq # build from source (see ../overlays/gwq/overlay.nix)
 
-        gwq # build from source (see ../overlays/gwq/overlay.nix)
+    podman
 
-        podman
+    openstackclient
+  ];
 
-        openstackclient
-      ]
-      ++ lib.optionals (!config.apps.headless) [
-        appimage-run
-        steam
-
-        wl-clipboard # needed by tmux-yank
-
-        thunderbird
-        zapzap
-        signal-desktop
-        slack
-        vesktop
-
-        bitwarden-desktop
-        ente-auth
-
-        obs-studio
-
-        proton-vpn
-
-        p3x-onenote
-
-        (anki.withAddons [
-          pkgs.ankiAddons.review-heatmap
-        ])
-
-        libreoffice
-
-        gimp
-        inkscape
-
-        kitty
-
-        mission-center
-
-        winboat
-        freerdp
-
-        podman-desktop
-
-        # also development, but more GUI
-        github-desktop
-        gitkraken
-        zed-editor
-        jetbrains.idea-oss
-        vscode
-
-        # cursor
-        bibata-cursors
-
-        # font
-        nerd-fonts.jetbrains-mono
-
-        # icons
-        tela-icon-theme
-
-        # cisco anyconnect vpn: uni-ulm
-        openconnect
-        networkmanager-openconnect
-        gp-saml-gui
-
-        # 3d printing
-        orca-slicer
-      ];
-
-    programs.firefox.enable = lib.mkIf (!config.apps.headless) true;
-
-    services.flatpak.enable = lib.mkIf (!config.apps.headless) true;
-
-    services.tailscale = {
-      enable = true;
-      extraSetFlags = [ "--accept-dns=false" ];
-    };
-
-    programs.localsend = {
-      enable = !config.apps.headless;
-      openFirewall = true;
-    };
+  services.tailscale = {
+    enable = true;
+    extraSetFlags = [ "--accept-dns=false" ];
   };
 }

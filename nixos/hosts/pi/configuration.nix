@@ -43,8 +43,6 @@
     };
   };
 
-  # see ../../modules/apps.nix
-  apps.headless = true;
   # see ../../modules/development.nix
   development.full = false;
   # see ../../modules/cloudflared-tunnel.nix

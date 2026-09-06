@@ -3,10 +3,12 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/desktop.nix
     ../../modules/niri.nix
     ../../modules/gnome.nix
     ../../modules/sddm.nix
     ../../modules/apps.nix
+    ../../modules/gui-apps.nix
     ../../modules/development.nix
     ../../modules/onedrive-rclone.nix
     ../../modules/ai-tools.nix
