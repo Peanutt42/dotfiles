@@ -19,7 +19,14 @@
     script = ''
       ${pkgs.coreutils}/bin/mkdir -p /home/peter/OneDrive
 
-      ${pkgs.rclone}/bin/rclone mount --allow-other --config /home/peter/.config/rclone/rclone.conf --vfs-cache-mode full --vfs-write-back 0s --vfs-cache-max-age 0s --dir-cache-time 30s --no-checksum=false --rc OneDrive: /home/peter/OneDrive
+      ${pkgs.rclone}/bin/rclone mount \
+        --allow-other \
+        --rc \
+        --fast-list \
+        --onedrive-delta \
+        --config /home/peter/.config/rclone/rclone.conf \
+        --vfs-cache-mode full \
+        OneDrive: /home/peter/OneDrive
     '';
 
     serviceConfig = {
