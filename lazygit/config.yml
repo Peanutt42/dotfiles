@@ -1,9 +1,9 @@
 os:
   editPreset: "nvim-remote"
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --paging=never --line-numbers --features=github-dark-contrast
+      command: delta --paging=never --line-numbers --features=github-dark-contrast
 gui:
   nerdFontsVersion: "3"
   theme:

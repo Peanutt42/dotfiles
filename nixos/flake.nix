@@ -19,11 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    no_bs_habit_tracker = {
-      url = "github:Peanutt42/no_bs_habit_tracker";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,7 +47,6 @@
       nixos-hardware,
       dms-plugin-registry,
       git_progress_sync,
-      no_bs_habit_tracker,
       silentSDDM,
       sops-nix,
       tmux-sessionizer,
@@ -86,9 +80,6 @@
           };
           modules = [
             ./modules/shared.nix
-
-            # does not enable the service, just adds the option
-            no_bs_habit_tracker.nixosModules.default
 
             silentSDDM.nixosModules.default
 

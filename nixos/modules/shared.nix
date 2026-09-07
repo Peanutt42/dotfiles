@@ -73,6 +73,8 @@
 
   virtualisation.docker.enable = true;
 
+  systemd.tmpfiles.rules = [ "L /dev/bielefeld - - - - /dev/null" ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

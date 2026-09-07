@@ -16,6 +16,9 @@
       dankBatteryAlerts.enable = true;
       calculator.enable = true;
       nixPackageRunner.enable = true;
+      activateLinux.enable = true;
+      dankscale.enable = true;
+      systemMonitorPlus.enable = true;
     };
   };
   programs.dsearch.enable = true;

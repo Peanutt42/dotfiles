@@ -24,6 +24,10 @@
 
   services.tailscale = {
     enable = true;
-    extraSetFlags = [ "--accept-dns=false" ];
+    openFirewall = true;
+    extraSetFlags = [
+      "--accept-dns=false"
+      "--operator=peter"
+    ];
   };
 }
