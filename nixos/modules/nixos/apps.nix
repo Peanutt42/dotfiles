@@ -7,6 +7,7 @@
     zoxide
     eza
     bat
+    yazi
     fastfetch
     stow
     htop

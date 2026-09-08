@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -8,20 +9,31 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/nginx.nix
-    ../../modules/adguard-home.nix
-    ../../modules/octoprint.nix
-    ../../modules/vaultwarden.nix
-    ../../modules/anki-sync-server.nix
-    ../../modules/vikunja.nix
-    ../../modules/restic.nix
-    ../../modules/apps.nix
-    ../../modules/development.nix
-    ../../modules/gnupg.nix
-    ../../modules/onedrive-rclone.nix
-    ../../modules/cloudflared-tunnel.nix
-    ../../modules/kosync.nix
+    ../../modules/nixos/nginx.nix
+    ../../modules/nixos/adguard-home.nix
+    ../../modules/nixos/octoprint.nix
+    ../../modules/nixos/vaultwarden.nix
+    ../../modules/nixos/anki-sync-server.nix
+    ../../modules/nixos/vikunja.nix
+    ../../modules/nixos/restic.nix
+    ../../modules/nixos/apps.nix
+    ../../modules/nixos/development.nix
+    ../../modules/nixos/gnupg.nix
+    ../../modules/nixos/onedrive-rclone.nix
+    ../../modules/nixos/cloudflared-tunnel.nix
+    ../../modules/nixos/kosync.nix
   ];
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "peter" = {
+        imports = [
+          ../../modules/homeManager/default-home.nix
+        ];
+      };
+    };
+  };
 
   networking.hostName = "peter-pi";
 

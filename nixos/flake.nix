@@ -9,6 +9,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     dms-plugin-registry = {
       url = "github:AvengeMedia/dms-plugin-registry";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,14 +55,9 @@
       self,
       nixpkgs,
       nixos-hardware,
-      dms-plugin-registry,
-      git_progress_sync,
-      silentSDDM,
-      sops-nix,
-      tmux-sessionizer,
-      oniri,
+      home-manager,
       ...
-    }:
+    }@inputs:
     let
       tmux-fork-overlay = import ./overlays/tmux-fork.nix;
       gwq-overlay = import ./overlays/gwq.nix;
@@ -72,21 +77,19 @@
             };
             overlays = [
               tmux-fork-overlay
-              git_progress_sync.overlays.default
+              inputs.git_progress_sync.overlays.default
               gwq-overlay
-              tmux-sessionizer.overlays.default
-              oniri.overlays.default
+              inputs.tmux-sessionizer.overlays.default
+              inputs.oniri.overlays.default
             ];
           };
           modules = [
-            ./modules/shared.nix
+            ./modules/nixos/shared.nix
 
-            silentSDDM.nixosModules.default
-
-            sops-nix.nixosModules.sops
+            home-manager.nixosModules.default
           ]
           ++ modules;
-          specialArgs = { inherit dms-plugin-registry; };
+          specialArgs = { inherit inputs; };
         };
     in
     {

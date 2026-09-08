@@ -1,6 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
+  imports = [
+    inputs.silentSDDM.nixosModules.default
+  ];
+
   security.pam.services.login.fprintAuth = false;
 
   services.displayManager.sddm = {
@@ -24,7 +28,7 @@
   programs.silentSDDM = {
     enable = true;
     theme = "default";
-    backgrounds.default = ../wallpapers/greeter.png;
+    backgrounds.default = ../../wallpapers/greeter.png;
     settings = {
       "LoginScreen" = {
         background = "greeter.png";

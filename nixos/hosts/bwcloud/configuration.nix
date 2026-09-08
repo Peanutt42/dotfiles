@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   modulesPath,
@@ -9,14 +10,25 @@
   imports = [
     "${modulesPath}/profiles/qemu-guest.nix"
     "${modulesPath}/virtualisation/openstack-config.nix"
-    ../../modules/apps.nix
-    ../../modules/development.nix
-    ../../modules/cloudflared-tunnel.nix
-    ../../modules/restic.nix
-    ../../modules/onedrive-rclone.nix
-    ../../modules/uptime-kuma.nix
-    ../../modules/grafana.nix
+    ../../modules/nixos/apps.nix
+    ../../modules/nixos/development.nix
+    ../../modules/nixos/cloudflared-tunnel.nix
+    ../../modules/nixos/restic.nix
+    ../../modules/nixos/onedrive-rclone.nix
+    ../../modules/nixos/uptime-kuma.nix
+    ../../modules/nixos/grafana.nix
   ];
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "peter" = {
+        imports = [
+          ../../modules/homeManager/default-home.nix
+        ];
+      };
+    };
+  };
 
   # openstack has some spellcheck warnings
   systemd.enableStrictShellChecks = lib.mkForce false;

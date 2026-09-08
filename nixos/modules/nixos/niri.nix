@@ -1,7 +1,7 @@
-{ pkgs, dms-plugin-registry, ... }:
+{ pkgs, inputs, ... }:
 
 {
-  imports = [ dms-plugin-registry.nixosModules.default ];
+  imports = [ inputs.dms-plugin-registry.nixosModules.default ];
 
   services.displayManager.defaultSession = "niri";
 

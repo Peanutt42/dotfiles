@@ -1,19 +1,30 @@
-{ config, ... }:
+{ inputs, config, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/desktop.nix
-    ../../modules/niri.nix
-    ../../modules/gnome.nix
-    ../../modules/sddm.nix
-    ../../modules/apps.nix
-    ../../modules/gui-apps.nix
-    ../../modules/development.nix
-    ../../modules/onedrive-rclone.nix
-    ../../modules/ai-tools.nix
-    ../../modules/gnupg.nix
+    ../../modules/nixos/desktop.nix
+    ../../modules/nixos/niri.nix
+    ../../modules/nixos/gnome.nix
+    ../../modules/nixos/sddm.nix
+    ../../modules/nixos/apps.nix
+    ../../modules/nixos/gui-apps.nix
+    ../../modules/nixos/development.nix
+    ../../modules/nixos/onedrive-rclone.nix
+    ../../modules/nixos/ai-tools.nix
+    ../../modules/nixos/gnupg.nix
   ];
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "peter" = {
+        imports = [
+          ../../modules/homeManager/default-home.nix
+        ];
+      };
+    };
+  };
 
   networking.hostName = "peter-pc";
 
