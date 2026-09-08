@@ -12,7 +12,10 @@ return {
 			highlight NormalNC guibg=none ctermbg=none
 			highlight NonText guibg=none ctermbg=none
 			highlight SignColumn guibg=none ctermbg=none
+			highlight NormalFloat guibg=#1E1E1E ctermbg=Black
 			highlight LazyGitFloat guibg=#1E1E1E ctermbg=Black
+			highlight YaziFloat guibg=#1E1E1E ctermbg=Black
+			highlight YaziFloatBorder guibg=#1E1E1E ctermbg=Black
 			highlight LazyGitBorder guibg=#1E1E1E ctermbg=Black
 		]])
 	end,

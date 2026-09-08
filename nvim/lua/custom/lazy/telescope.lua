@@ -9,12 +9,6 @@ return {
 			desc = "Find files",
 		},
 		{
-			"<C-p>",
-			function() require("telescope.builtin").find_files() end,
-			mode = "n",
-			desc = "Find files",
-		},
-		{
 			"<leader>fg",
 			function() require("telescope.builtin").git_files() end,
 			mode = "n",

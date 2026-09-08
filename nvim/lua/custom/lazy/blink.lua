@@ -22,7 +22,7 @@ return {
 		'saghen/blink.pairs',
 		event = "InsertEnter",
 		dependencies = 'saghen/blink.lib',
-		version = '0.6.0',
+		version = '*',
 		build = function() require('blink.pairs').download():pwait(60000) end,
 		--- @module 'blink.pairs'
 		--- @type blink.pairs.Config
