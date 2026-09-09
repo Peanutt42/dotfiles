@@ -2,7 +2,7 @@
 
 {
   sops.secrets."grafana/secret_key" = {
-    sopsFile = ../secrets/grafana.yaml;
+    sopsFile = ../../../secrets/grafana.yaml;
     owner = "grafana";
     group = "grafana";
     mode = "0400";

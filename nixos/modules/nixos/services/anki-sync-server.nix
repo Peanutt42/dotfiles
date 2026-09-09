@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  sops.secrets."anki-sync-server/password".sopsFile = ../secrets/anki-sync-server.yaml;
+  sops.secrets."anki-sync-server/password".sopsFile = ../../../secrets/anki-sync-server.yaml;
 
   services.anki-sync-server = {
     enable = true;

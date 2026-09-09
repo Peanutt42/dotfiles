@@ -3,8 +3,8 @@
 {
   services.vikunja = {
     enable = true;
-    frontendScheme = "http";
-    frontendHostname = "localhost";
+    frontendScheme = "https";
+    frontendHostname = "vikunja.peternhennig.de";
     port = 3456;
     database.type = "sqlite";
   };
