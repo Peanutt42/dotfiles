@@ -9,7 +9,7 @@
 		"dock": "right",
 	},
 	"disable_ai": false,
-	"vim_mode": false,
+	"vim_mode": true,
 	"icon_theme": "Material Icon Theme",
 	"ssh_connections": [
 		{

@@ -606,7 +606,12 @@
           "id": "launcherButton",
           "enabled": false
         },
-        "workspaceSwitcher"
+        "workspaceSwitcher",
+        {
+          "id": "systemTray",
+          "enabled": true,
+          "trayUseInlineExpansion": true
+        }
       ],
       "centerWidgets": [
         {
@@ -618,22 +623,17 @@
           "id": "clock",
           "enabled": true,
           "clockCompactMode": false
-        }
+        },
+        "notificationButton"
       ],
       "rightWidgets": [
         {
-          "id": "systemTray",
-          "enabled": true,
-          "trayUseInlineExpansion": true
-        },
-        "notificationButton",
-        {
-          "id": "cpuUsage",
+          "id": "dankscale",
           "enabled": true
         },
         {
-          "id": "memUsage",
-          "enabled": false
+          "id": "systemMonitorPlus",
+          "enabled": true
         },
         {
           "id": "battery",
@@ -761,7 +761,45 @@
   "systemMonitorVariants": [],
   "desktopWidgetPositions": {},
   "desktopWidgetGridSettings": {},
-  "desktopWidgetInstances": [],
+  "desktopWidgetInstances": [
+    {
+      "id": "dw_1788793471751_3l5r4wh4l",
+      "widgetType": "activateLinux",
+      "name": "Activate Linux Watermark",
+      "enabled": true,
+      "config": {
+        "displayPreferences": [
+          "all"
+        ],
+        "showOnOverlay": false,
+        "clickThrough": true,
+        "syncPositionAcrossScreens": false,
+        "watermarkOpacity": 100,
+        "showOnOverview": false
+      },
+      "positions": {
+        "eDP-1": {
+          "width": 400,
+          "height": 200,
+          "x": 1246,
+          "y": 897
+        },
+        "DP-2": {
+          "width": 400,
+          "height": 200,
+          "x": 2160,
+          "y": 1240
+        },
+        "_synced": {
+          "x": 0.3784933171324423,
+          "y": 0.4088422971741112,
+          "width": 400,
+          "height": 200
+        }
+      },
+      "group": null
+    }
+  ],
   "desktopWidgetGroups": [],
   "builtInPluginSettings": {
     "dms_settings_search": {

@@ -1,0 +1,39 @@
+{ ... }:
+
+{
+  programs.lazygit = {
+    enable = true;
+    enableFishIntegration = true;
+    settings = {
+      os = {
+        editPreset = "nvim-remote";
+      };
+      git = {
+        diffRenderers = [
+          {
+            colorArg = "always";
+            command = "delta --paging=never --line-numbers --features=github-dark-contrast";
+          }
+        ];
+      };
+      gui = {
+        nerdFontsVersion = 3;
+        theme = {
+          activeBorderColor = [
+            "#a5d6ff"
+            "bold"
+          ];
+          unstagedChangesColor = [ "#f85149" ];
+          selectedLineBgColor = [ "#264f78" ];
+          searchingActiveBorderColor = [
+            "#a5d6ff"
+            "bold"
+          ];
+          optionsTextColor = [ "#b776fc" ];
+          defaultFgColor = [ "#ffffff" ];
+          cherryPickedCommitFgColor = [ "#b776fc" ];
+        };
+      };
+    };
+  };
+}

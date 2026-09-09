@@ -9,5 +9,39 @@
   },
   "nixPackageRunner": {
     "enabled": true
+  },
+  "dankKDEConnect": {
+    "enabled": true,
+    "selectedDeviceId": ""
+  },
+  "networkIndicator": {
+    "enabled": false
+  },
+  "systemMonitorPlus": {
+    "enabled": true,
+    "cpuTempEnabled": true,
+    "ramUsageEnabled": true,
+    "gpuTempEnabled": true,
+    "networkSpeedEnabled": false,
+    "cpuUsageColorizeText": false,
+    "cpuUsageShowText": true,
+    "gpuTempVisualStyle": "gauge",
+    "cpuUsageVisualStyle": "gauge",
+    "cpuTempVisualStyle": "gauge",
+    "ramUsageVisualStyle": "gauge",
+    "networkSpeedVisualStyle": "default",
+    "ramUsageTextMode": "value",
+    "gpuTempIconName": "device_thermostat"
+  },
+  "dankscale": {
+    "enabled": true,
+    "lastAccount": "Peanutt42@github"
+  },
+  "wallpaperCarousel": {
+    "enabled": false,
+    "overlayOpacity": 80
+  },
+  "modernClock": {
+    "enabled": false
   }
 }

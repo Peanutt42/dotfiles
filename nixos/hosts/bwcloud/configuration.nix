@@ -12,11 +12,11 @@
     "${modulesPath}/virtualisation/openstack-config.nix"
     ../../modules/nixos/apps.nix
     ../../modules/nixos/development.nix
-    ../../modules/nixos/cloudflared-tunnel.nix
-    ../../modules/nixos/restic.nix
-    ../../modules/nixos/onedrive-rclone.nix
-    ../../modules/nixos/uptime-kuma.nix
-    ../../modules/nixos/grafana.nix
+    ../../modules/nixos/services/cloudflared-tunnel.nix
+    ../../modules/nixos/services/restic.nix
+    ../../modules/nixos/services/onedrive-rclone.nix
+    ../../modules/nixos/services/uptime-kuma.nix
+    ../../modules/nixos/services/grafana.nix
   ];
 
   home-manager = {
@@ -35,9 +35,9 @@
 
   # see ../../modules/development.nix
   development.full = false;
-  # see ../../modules/cloudflared-tunnel.nix
+  # see ../../modules/services/cloudflared-tunnel.nix
   cloudflared-tunnel.tunnelID = "69cac2c6-6166-4977-91bb-96383425e6d3";
-  # see ../../modules/restic.nix
+  # see ../../modules/services/restic.nix
   restic = {
     passwordFile = config.sops.secrets."restic/bwcloud/password".path;
     rcloneOneDrivePath = "/Backups/bwcloud";

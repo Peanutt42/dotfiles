@@ -10,6 +10,8 @@
 {
   imports = [
     ./yazi.nix
+    ./lazygit.nix
+    ./fish
   ];
 
   home.username = "peter";

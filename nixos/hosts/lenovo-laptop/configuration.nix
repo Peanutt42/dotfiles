@@ -10,9 +10,9 @@
     ../../modules/nixos/apps.nix
     ../../modules/nixos/gui-apps.nix
     ../../modules/nixos/development.nix
-    ../../modules/nixos/onedrive-rclone.nix
     ../../modules/nixos/ai-tools.nix
     ../../modules/nixos/gnupg.nix
+    ../../modules/nixos/services/onedrive-rclone.nix
   ];
 
   home-manager = {

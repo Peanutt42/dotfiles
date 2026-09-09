@@ -30,4 +30,7 @@
     pulseaudioFull # mainly for bluetooth audio codec
     oniri # forked, see flake inputs
   ];
+
+  # make Chromium and Electron apps use Wayland
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

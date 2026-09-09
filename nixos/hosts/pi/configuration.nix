@@ -9,19 +9,19 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/nixos/nginx.nix
-    ../../modules/nixos/adguard-home.nix
-    ../../modules/nixos/octoprint.nix
-    ../../modules/nixos/vaultwarden.nix
-    ../../modules/nixos/anki-sync-server.nix
-    ../../modules/nixos/vikunja.nix
-    ../../modules/nixos/restic.nix
     ../../modules/nixos/apps.nix
     ../../modules/nixos/development.nix
     ../../modules/nixos/gnupg.nix
-    ../../modules/nixos/onedrive-rclone.nix
-    ../../modules/nixos/cloudflared-tunnel.nix
-    ../../modules/nixos/kosync.nix
+    ../../modules/nixos/services/nginx.nix
+    ../../modules/nixos/services/adguard-home.nix
+    ../../modules/nixos/services/octoprint.nix
+    ../../modules/nixos/services/vaultwarden.nix
+    ../../modules/nixos/services/anki-sync-server.nix
+    ../../modules/nixos/services/vikunja.nix
+    ../../modules/nixos/services/restic.nix
+    ../../modules/nixos/services/onedrive-rclone.nix
+    ../../modules/nixos/services/cloudflared-tunnel.nix
+    ../../modules/nixos/services/kosync.nix
   ];
 
   home-manager = {
@@ -57,9 +57,9 @@
 
   # see ../../modules/development.nix
   development.full = false;
-  # see ../../modules/cloudflared-tunnel.nix
+  # see ../../modules/services/cloudflared-tunnel.nix
   cloudflared-tunnel.tunnelID = "4ca9765d-1875-4d76-bf02-7e4c88257fbe";
-  # see ../../modules/restic.nix
+  # see ../../modules/services/restic.nix
   restic = {
     passwordFile = config.sops.secrets."restic/pi/password".path;
     rcloneOneDrivePath = "/Backups/pi";
