@@ -34,6 +34,7 @@
     kitty
 
     mission-center
+    nethogs # used by mission-center
 
     winboat
     freerdp
@@ -72,5 +73,19 @@
   programs.localsend = {
     enable = true;
     openFirewall = true;
+  };
+
+  # for mission-center: https://gitlab.com/mission-center-devs/mission-center/-/wikis/Home/CPU
+  services.udev.extraRules = ''
+    SUBSYSTEM=="powercap", KERNEL=="intel-rapl*", \
+        RUN+="${pkgs.coreutils}/bin/chmod -R a+r /sys/%p/"
+  '';
+  # for mission-center: https://gitlab.com/mission-center-devs/mission-center/-/wikis/Home/Nethogs
+  security.wrappers.nethogs = {
+    source = "${pkgs.nethogs}/bin/nethogs";
+    capabilities = "cap_net_admin,cap_net_raw,cap_dac_read_search,cap_sys_ptrace+ep";
+    owner = "root";
+    group = "root";
+    permissions = "u+rx,g+rx,o+rx";
   };
 }
