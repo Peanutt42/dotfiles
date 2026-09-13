@@ -5,7 +5,7 @@ generate_hardware_configuration host:
 	sudo nixos-generate-config --show-hardware-config > ./hosts/{{host}}/hardware-configuration.nix
 
 # installs the configuration of the `host` configuration
-[arg('host', pattern='pc|framework-laptop|lenovo-laptop|pi')]
+[arg('host', pattern='pc|framework-laptop|lenovo-laptop|pi|bwcloud')]
 install host:
 	sudo nixos-rebuild switch --flake .#{{host}}
 

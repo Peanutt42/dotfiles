@@ -56,6 +56,8 @@
     settings.PasswordAuthentication = true;
   };
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   services.qemuGuest.enable = true;
 
   users.users.peter.initialHashedPassword = "$y$j9T$qH9rynM1KrfHgs8.1bZ0Z/$aBOWzink2fHF3CBLhGta6V0KslNyY5IqTO5dN0TfUu6";
