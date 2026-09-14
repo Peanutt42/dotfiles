@@ -21,11 +21,11 @@
 
       ${pkgs.rclone}/bin/rclone mount \
         --allow-other \
-        --rc \
-        --fast-list \
         --onedrive-delta \
         --config /home/peter/.config/rclone/rclone.conf \
         --vfs-cache-mode full \
+        --vfs-disk-space-total-size 1T \
+        --poll-interval 1m \
         OneDrive: /home/peter/OneDrive
     '';
 
