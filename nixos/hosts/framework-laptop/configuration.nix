@@ -1,4 +1,9 @@
-{ config, inputs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -46,6 +51,32 @@
   };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  # see ./hardware-configuration.nix for uuid
+  boot.resumeDevice = "/dev/disk/by-uuid/8d7a6e4d-802b-44fd-8e07-9980d8e9995b";
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "1h";
+    SuspendState = "mem";
+  };
+
+  services.tlp.enable = false;
+  services.power-profiles-daemon.enable = true;
+
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend-then-hibernate";
+    HandleLidSwitchExternalPower = "suspend";
+    HandleLidSwitchDocked = "ignore";
+  };
+
+  # Enable audio enhancement for Framework Laptop 13
+  hardware.framework.laptop13.audioEnhancement.rawDeviceName =
+    lib.mkDefault "alsa_output.pci-0000_c1_00.6.analog-stereo";
+  # See: https://community.frame.work/t/microphone-not-working-after-nixos-update/74915
+  services.pipewire.wireplumber.extraConfig.no-ucm = {
+    "monitor.alsa.properties" = {
+      "alsa.use-ucm" = false;
+    };
+  };
 
   sops.secrets = {
     "eduroam/domain".sopsFile = ../../secrets/eduroam.yaml;
