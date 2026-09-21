@@ -12,7 +12,7 @@
     ../../modules/nixos/apps.nix
     ../../modules/nixos/development.nix
     ../../modules/nixos/gnupg.nix
-    ../../modules/nixos/services/nginx.nix
+    ../../modules/nixos/services/caddy.nix
     ../../modules/nixos/services/adguard-home.nix
     ../../modules/nixos/services/octoprint.nix
     ../../modules/nixos/services/vaultwarden.nix

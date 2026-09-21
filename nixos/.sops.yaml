@@ -22,6 +22,11 @@ creation_rules:
       - *admin
       - *host_pi
       - *host_bwcloud
+  - path_regex: secrets/caddy-cloudflare.env$
+    key_groups:
+      - age:
+        - *admin
+        - *host_pi
   - path_regex: secrets/grafana.yaml$
     key_groups:
     - age:
