@@ -7,6 +7,7 @@
 {
   imports = [
     ./sops.nix
+    ../../users/peter/nixos.nix
   ];
 
   nix.settings.experimental-features = [
@@ -48,22 +49,6 @@
   console.keyMap = "de";
 
   services.resolved.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.peter = {
-    isNormalUser = true;
-    description = "Peter";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "video"
-      "render"
-      "docker"
-      "greeter"
-    ];
-    shell = pkgs.fish;
-  };
-  programs.fish.enable = true;
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = [

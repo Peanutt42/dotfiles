@@ -21,17 +21,13 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    useGlobalPkgs = true;
     users = {
       "peter" = {
-        imports = [
-          ../../modules/homeManager/default-home.nix
-        ];
+        imports = [ ../../users/peter/home.nix ];
       };
     };
   };
-
-  # openstack has some spellcheck warnings
-  systemd.enableStrictShellChecks = lib.mkForce false;
 
   # see ../../modules/development.nix
   development.full = false;

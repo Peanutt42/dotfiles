@@ -1,27 +1,9 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [ inputs.dms-plugin-registry.nixosModules.default ];
-
   services.displayManager.defaultSession = "niri";
 
   programs.niri.enable = true;
-  programs.dms-shell = {
-    enable = true;
-    systemd = {
-      enable = true; # Systemd service for auto-start
-      restartIfChanged = true; # Auto-restart dms.service when dms-shell changes
-    };
-    plugins = {
-      dankBatteryAlerts.enable = true;
-      calculator.enable = true;
-      nixPackageRunner.enable = true;
-      activateLinux.enable = true;
-      dankscale.enable = true;
-      systemMonitorPlus.enable = true;
-    };
-  };
-  programs.dsearch.enable = true;
   programs.xwayland.enable = true;
   environment.systemPackages = with pkgs; [
     xwayland-satellite # for X11 support on Wayland

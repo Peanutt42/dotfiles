@@ -14,7 +14,6 @@ let
     uuid=89fc49fd-01ee-490a-ab0d-71d7cf48863b
     type=wifi
     autoconnect-priority=101
-    permissions=user:${cfg.user}:;
     timestamp=1785490905
 
     [wifi]
@@ -89,9 +88,6 @@ in
     passwordFile = lib.mkOption {
       type = lib.types.nullOr lib.types.nonEmptyStr;
       default = null;
-    };
-    user = lib.mkOption {
-      type = lib.types.nonEmptyStr;
     };
     extraServiceConfig = lib.mkOption {
       type = lib.types.attrs;

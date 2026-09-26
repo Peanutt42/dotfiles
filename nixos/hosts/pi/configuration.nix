@@ -26,11 +26,10 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    useGlobalPkgs = true;
     users = {
       "peter" = {
-        imports = [
-          ../../modules/homeManager/default-home.nix
-        ];
+        imports = [ ../../users/peter/home.nix ];
       };
     };
   };

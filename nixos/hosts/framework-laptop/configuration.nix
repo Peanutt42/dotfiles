@@ -20,6 +20,7 @@
     ../../modules/nixos/gnupg.nix
     ../../modules/nixos/eduroam
     ../../modules/nixos/services/onedrive-rclone.nix
+    ../../users/presentation/nixos.nix
   ];
 
   home-manager = {
@@ -28,7 +29,14 @@
     users = {
       "peter" = {
         imports = [
-          ../../modules/homeManager/default-home.nix
+          ../../users/peter/home.nix
+          ../../modules/homeManager/dms.nix
+        ];
+      };
+      "presentation" = {
+        imports = [
+          ../../users/presentation/home.nix
+          ../../modules/homeManager/dms.nix
         ];
       };
     };
@@ -87,7 +95,6 @@
 
   services.networking.eduroam = {
     enable = true;
-    user = "peter";
     domainFile = config.sops.secrets."eduroam/domain".path;
     radiusFile = config.sops.secrets."eduroam/radius".path;
     identityFile = config.sops.secrets."eduroam/identity".path;

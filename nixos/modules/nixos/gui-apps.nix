@@ -12,6 +12,7 @@
     signal-desktop
     slack
     vesktop
+    element-desktop
 
     bitwarden-desktop
     ente-auth
@@ -31,7 +32,7 @@
     gimp
     inkscape
 
-    kitty
+    wezterm
 
     mission-center
     nethogs # used by mission-center
@@ -87,5 +88,12 @@
     owner = "root";
     group = "root";
     permissions = "u+rx,g+rx,o+rx";
+  };
+
+  services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true;
+  security.pam.services = {
+    greetd.enableGnomeKeyring = true;
+    login.enableGnomeKeyring = true;
   };
 }

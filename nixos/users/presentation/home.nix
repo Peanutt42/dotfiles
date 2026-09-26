@@ -1,21 +1,16 @@
+# Seperate user for presentation
+
 { ... }:
-
-# This is the base, default home.nix for all hosts
-
-/*
-  # TODO
-  - [ ] DMS
-*/
 
 {
   imports = [
-    ./yazi.nix
-    ./lazygit.nix
-    ./fish
+    ../../modules/homeManager/yazi.nix
+    ../../modules/homeManager/lazygit.nix
+    ../../modules/homeManager/fish
   ];
 
-  home.username = "peter";
-  home.homeDirectory = "/home/peter";
+  home.username = "presentation";
+  home.homeDirectory = "/home/presentation";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

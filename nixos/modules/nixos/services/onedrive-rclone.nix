@@ -7,8 +7,6 @@
     userAllowOther = true;
   };
 
-  systemd.enableStrictShellChecks = true;
-
   systemd.services.mount-onedrive-rclone = {
     description = "Mounts OneDrive using rclone";
 
