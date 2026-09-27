@@ -5,6 +5,8 @@
   ...
 }:
 
+# TODO: move from .extraConfig = '''' to using the provided types by the module
+
 {
   sops.secrets."caddy-cloudflare-env" = {
     sopsFile = ../../../secrets/caddy-cloudflare.env;
@@ -32,24 +34,44 @@
           reverse_proxy 127.0.0.1:${toString port}
         }
       '';
-      # run on http://localhost:8080
-      publicStaticSites = {
-        "${domain}" = "/var/www/portfolio";
-        "raumreservierung.${domain}" = "/var/www/raumreservierung";
-      };
-      handlePublicStaticSite = full_domain: dir: {
-        "http://${full_domain}:8080".extraConfig = ''
-          bind 127.0.0.1
-          root * ${dir}
-          file_server
-          encode gzip
-        '';
-      };
     in
     {
       enable = true;
 
       virtualHosts = {
+        # public site: portfolio (+ matrix feredation)
+        "http://${domain}:8080".extraConfig =
+          let
+            matrixWellKnownResponseServer = ''{"m.server":"matrix.peternhennig.de:443"}'';
+            matrixWellKnownResponseClient = ''{"m.homeserver":{"base_url":"https://matrix.peternhennig.de"}}'';
+          in
+          ''
+            bind 127.0.0.1
+
+            # enables federation of matrix server from peternhennig.de -> matrix.peternhennig.de
+            handle /.well-known/matrix/server {
+              header Content-Type application/json
+              respond `${matrixWellKnownResponseServer}` 200
+            }
+            handle /.well-known/matrix/client {
+              header Content-Type application/json
+              header Access-Control-Allow-Origin *
+              respond `${matrixWellKnownResponseClient}` 200
+            }
+
+            root * /var/www/portfolio
+            file_server
+            encode gzip
+          '';
+
+        # public site: ASQ Raumreservierung (TODO: remove, this is done...)
+        "http://raumreservierung.${domain}:8080".extraConfig = ''
+          bind 127.0.0.1
+          root * /var/www/raumreservierung
+          file_server
+          encode gzip
+        '';
+
         # private services
         "*.${privateServicesDomain}".extraConfig = ''
           tls {
@@ -63,9 +85,7 @@
             abort
           }
         '';
-      }
-      # public static sites
-      // lib.mergeAttrsList (lib.mapAttrsToList handlePublicStaticSite publicStaticSites);
+      };
 
       package = pkgs.caddy.withPlugins {
         plugins = [

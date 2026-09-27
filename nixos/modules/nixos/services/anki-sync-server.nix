@@ -6,7 +6,7 @@
   services.anki-sync-server = {
     enable = true;
     openFirewall = true;
-    address = "localhost";
+    address = "127.0.0.1";
     port = 27701;
     users = [
       {

@@ -17,6 +17,7 @@
     ../../modules/nixos/services/onedrive-rclone.nix
     ../../modules/nixos/services/uptime-kuma.nix
     ../../modules/nixos/services/grafana.nix
+    ../../modules/nixos/services/matrix.nix
   ];
 
   home-manager = {
@@ -40,6 +41,7 @@
     serviceNames = [
       "uptime-kuma"
       "grafana"
+      "matrix-synapse"
     ];
   };
   sops.secrets."restic/bwcloud/password".sopsFile = ../../secrets/restic.yaml;

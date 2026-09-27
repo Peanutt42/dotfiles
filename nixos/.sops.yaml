@@ -32,3 +32,8 @@ creation_rules:
     - age:
       - *admin
       - *host_bwcloud
+  - path_regex: secrets/matrix.yaml$
+    key_groups:
+    - age:
+      - *admin
+      - *host_bwcloud
