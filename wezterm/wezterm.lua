@@ -41,7 +41,7 @@ config.colors = {
 		}
 	},
 }
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+wezterm.on("format-tab-title", function(tab, --[[tabs]] _, --[[panes]] _, --[[config]] _, hover, max_width)
 	local tab_bg = tab_bar_bg
 	local tab_fg = "#babec4"
 	local terminal_bg = "#050505"
@@ -61,11 +61,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	local title_width = math.max(0, max_width - 6)
 
 	local title = tab.active_pane.title
-
-	if wezterm.truncate_right then
-		title = wezterm.truncate_right(title, title_width)
-	else
-		title = title:sub(1, title_width)
+	if title:len() > title_width then
+		title = title:sub(1, title_width - 1) .. '…'
 	end
 
 	return {
