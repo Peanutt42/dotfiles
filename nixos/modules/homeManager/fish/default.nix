@@ -67,6 +67,7 @@
           bind \b 'backward-kill-word'
           bind \e\[3\;5~ 'kill-word'
           bind \cf __tmux_sessionizer_bind
+          bind \cl 'clear; commandline -f repaint'
         '';
       };
     };
