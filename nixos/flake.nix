@@ -71,7 +71,6 @@
             config = {
               allowUnfree = true;
               permittedInsecurePackages = [
-                "electron-40.10.5" # bitwarden-desktop uses EOL
                 "idea-oss-2025.3.4" # jetbrains...
               ];
             };
