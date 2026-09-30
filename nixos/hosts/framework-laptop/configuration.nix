@@ -61,7 +61,8 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # see ./hardware-configuration.nix for uuid
-  boot.resumeDevice = "/dev/disk/by-uuid/8d7a6e4d-802b-44fd-8e07-9980d8e9995b";
+  boot.initrd.luks.devices."luks-c03d8d38-b843-49fc-b813-9538f7297527".device = "/dev/disk/by-uuid/c03d8d38-b843-49fc-b813-9538f7297527";
+  boot.resumeDevice = "/dev/mapper/luks-c03d8d38-b843-49fc-b813-9538f7297527";
   systemd.sleep.settings.Sleep = {
     HibernateDelaySec = "1h";
     SuspendState = "mem";
