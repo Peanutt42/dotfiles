@@ -48,6 +48,11 @@
       url = "github:Peanutt42/oniri/feat/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.2.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -86,6 +91,7 @@
             ./modules/nixos/shared.nix
 
             home-manager.nixosModules.default
+            inputs.lanzaboote.nixosModules.default
           ]
           ++ modules;
           specialArgs = { inherit inputs; };

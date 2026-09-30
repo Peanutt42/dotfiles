@@ -21,6 +21,9 @@
     podman
 
     openstackclient
+
+    # secure boot
+    sbctl
   ];
 
   services.tailscale = {

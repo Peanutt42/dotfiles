@@ -61,11 +61,24 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # see ./hardware-configuration.nix for uuid
-  boot.initrd.luks.devices."luks-c03d8d38-b843-49fc-b813-9538f7297527".device = "/dev/disk/by-uuid/c03d8d38-b843-49fc-b813-9538f7297527";
+  boot.initrd.luks.devices."luks-c03d8d38-b843-49fc-b813-9538f7297527".device =
+    "/dev/disk/by-uuid/c03d8d38-b843-49fc-b813-9538f7297527";
   boot.resumeDevice = "/dev/mapper/luks-c03d8d38-b843-49fc-b813-9538f7297527";
   systemd.sleep.settings.Sleep = {
     HibernateDelaySec = "1h";
     SuspendState = "mem";
+  };
+
+  # secure boot
+  boot.loader.systemd-boot.enable = lib.mkForce false; # lanzaboote replaces the systemd-boot module
+  boot.lanzaboote = {
+    enable = true;
+    autoEnrollKeys = {
+      enable = true;
+      includeFirmwareBuiltinKeys = true; # since its a framework laptop
+    };
+    autoGenerateKeys.enable = true;
+    pkiBundle = "/var/lib/sbctl";
   };
 
   services.tlp.enable = false;
