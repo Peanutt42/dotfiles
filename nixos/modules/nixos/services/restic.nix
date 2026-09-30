@@ -13,66 +13,72 @@
     rcloneOneDrivePath = lib.mkOption {
       type = lib.types.str;
     };
-    serviceNames = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
-    };
-    systemdServiceUnits = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = map lib.toLower config.restic.serviceNames;
+    services = lib.mkOption {
+      type = lib.types.attrsOf lib.types.str;
+      description = "maps systemdUnitNames to paths to backup";
+      default = { };
+      example = {
+        "systemdUnitName" = "/var/lib/systemdUnitName";
+      };
     };
   };
 
-  config = {
-    environment.systemPackages = with pkgs; [
-      restic
-      backrest
-    ];
-
-    services.restic.backups.onedrive = {
-      user = "root";
-      repository = "rclone:OneDrive:${config.restic.rcloneOneDrivePath}";
-      initialize = true;
-      passwordFile = config.restic.passwordFile;
-      rcloneConfigFile = "/home/peter/.config/rclone/rclone.conf";
-
-      paths = map (s: "/var/lib/" + s) config.restic.serviceNames ++ [ "/var/lib/private" ];
-
-      backupPrepareCommand = "systemctl stop " + lib.join " " config.restic.systemdServiceUnits;
-      backupCleanupCommand = "systemctl start " + lib.join " " config.restic.systemdServiceUnits;
-
-      # daily at 3:00 am
-      timerConfig = {
-        OnCalendar = "03:00";
-        Persistent = true;
-      };
-      pruneOpts = [
-        "--keep-daily 7"
-        "--keep-weekly 4"
-        "--keep-monthly 12"
-        "--keep-yearly 2"
+  config =
+    let
+      cfg = config.restic;
+      systemdServiceUnits = lib.mapAttrsToList (systemdUnitName: _: systemdUnitName) cfg.services;
+      serviceDataPaths = lib.mapAttrsToList (_: dataPath: dataPath) cfg.services;
+    in
+    {
+      environment.systemPackages = with pkgs; [
+        restic
+        backrest
       ];
-    };
 
-    # web ui interface for restic
-    systemd.services.backrest = {
-      description = "Launch backrest to take care of backups";
-      wantedBy = [ "default.target" ];
-      requires = [ "network-online.target" ];
-      script = "backrest";
-      path = [ pkgs.backrest ];
-      environment = {
-        BACKREST_PORT = "0.0.0.0:9898";
+      services.restic.backups.onedrive = {
+        user = "root";
+        repository = "rclone:OneDrive:${config.restic.rcloneOneDrivePath}";
+        initialize = true;
+        passwordFile = config.restic.passwordFile;
+        rcloneConfigFile = "/home/peter/.config/rclone/rclone.conf";
+
+        paths = serviceDataPaths ++ [ "/var/lib/private" ];
+
+        backupPrepareCommand = "systemctl stop " + lib.join " " systemdServiceUnits;
+        backupCleanupCommand = "systemctl start " + lib.join " " systemdServiceUnits;
+
+        # daily at 3:00 UTC -> 5:00 Berlin/CEST
+        timerConfig = {
+          OnCalendar = "*-*-* 03:00:00 UTC";
+          Persistent = true;
+        };
+        pruneOpts = [
+          "--keep-daily 7"
+          "--keep-weekly 4"
+          "--keep-monthly 12"
+          "--keep-yearly 2"
+        ];
       };
-      serviceConfig = {
-        Type = "simple";
-        User = "root";
-        # AmbientCapabilities = "CAP_DAC_READ_SEARCH";
-        # CapabilityBoundingSet = "CAP_DAC_READ_SEARCH";
-        # ExecStart = "backrest";
-        # It’s often a good idea to mark the service active after the command finishes.
-        # RemainAfterExit = true;
+
+      # web ui interface for restic
+      systemd.services.backrest = {
+        description = "Launch backrest to take care of backups";
+        wantedBy = [ "default.target" ];
+        requires = [ "network-online.target" ];
+        script = "backrest";
+        path = [ pkgs.backrest ];
+        environment = {
+          BACKREST_PORT = "0.0.0.0:9898";
+        };
+        serviceConfig = {
+          Type = "simple";
+          User = "root";
+          # AmbientCapabilities = "CAP_DAC_READ_SEARCH";
+          # CapabilityBoundingSet = "CAP_DAC_READ_SEARCH";
+          # ExecStart = "backrest";
+          # It’s often a good idea to mark the service active after the command finishes.
+          # RemainAfterExit = true;
+        };
       };
     };
-  };
 }

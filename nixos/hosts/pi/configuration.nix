@@ -14,7 +14,7 @@
     ../../modules/nixos/gnupg.nix
     ../../modules/nixos/services/caddy.nix
     ../../modules/nixos/services/adguard-home.nix
-    ../../modules/nixos/services/octoprint.nix
+    ../../modules/nixos/services/klipper
     ../../modules/nixos/services/vaultwarden.nix
     ../../modules/nixos/services/anki-sync-server.nix
     ../../modules/nixos/services/vikunja.nix
@@ -64,14 +64,16 @@
   restic = {
     passwordFile = config.sops.secrets."restic/pi/password".path;
     rcloneOneDrivePath = "/Backups/pi";
-    serviceNames = [
-      "AdGuardHome"
-      "anki-sync-server"
-      "octoprint"
-      "vaultwarden"
-      "vikunja"
-      "kosync"
-    ];
+    services = {
+      "adguardhome" = "/var/lib/AdGuardHome";
+      "anki-sync-server" = "/var/lib/anki-sync-server";
+      "klipper" = "/var/lib/klipper";
+      "moonraker" = "/var/lib/moonraker";
+      "vaultwarden" = "/var/lib/vaultwarden";
+      "vikunja" = "/var/lib/vikunja";
+      "docker-kosync" = "/var/lib/kosync";
+      "caddy" = "/var/lib/caddy";
+    };
   };
   sops.secrets."restic/pi/password".sopsFile = ../../secrets/restic.yaml;
 

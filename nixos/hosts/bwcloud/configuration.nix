@@ -38,11 +38,11 @@
   restic = {
     passwordFile = config.sops.secrets."restic/bwcloud/password".path;
     rcloneOneDrivePath = "/Backups/bwcloud";
-    serviceNames = [
-      "uptime-kuma"
-      "grafana"
-      "matrix-synapse"
-    ];
+    services = {
+      "uptime-kuma" = "/var/lib/uptime-kuma";
+      "grafana" = "/var/lib/grafana";
+      "matrix-synapse" = "/var/lib/matrix-synapse";
+    };
   };
   sops.secrets."restic/bwcloud/password".sopsFile = ../../secrets/restic.yaml;
 
