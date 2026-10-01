@@ -31,3 +31,25 @@ set --global fish_pager_color_description B3A06D yellow
 set --global fish_pager_color_prefix normal --bold --underline
 set --global fish_pager_color_progress brwhite --background=cyan
 set --global fish_pager_color_selected_background -r
+
+# make man output colorful
+# annotated by dave eddy (@yousuckatprogramming)
+# explained - https://youtu.be/D0sG2fj0G4Y
+# borrowed heavily from https://grml.org
+# converted to fish syntax
+set -x LESS_TERMCAP_mb (printf '\e[1;31m')
+set -x LESS_TERMCAP_md (printf '\e[1;31m')
+set -x LESS_TERMCAP_me (printf '\e[0m')
+set -x LESS_TERMCAP_se (printf '\e[0m')
+set -x LESS_TERMCAP_so (printf '\e[1;33;44m')
+set -x LESS_TERMCAP_ue (printf '\e[0m')
+set -x LESS_TERMCAP_us (printf '\e[4;1;32m')
+set -x LESS_TERMCAP_mr (printf '\e[7m')
+set -x LESS_TERMCAP_mh (printf '\e[2m')
+set -x LESS_TERMCAP_ZN (printf '\e[74m')
+set -x LESS_TERMCAP_ZV (printf '\e[75m')
+set -x LESS_TERMCAP_ZO (printf '\e[73m')
+set -x LESS_TERMCAP_ZW (printf '\e[75m')
+set -x MANPAGER 'less'
+set -x MANROFFOPT '-c'
+set -gx GROFF_NO_SGR 1
