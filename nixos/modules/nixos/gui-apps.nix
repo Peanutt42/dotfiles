@@ -14,7 +14,17 @@
     vesktop
     element-desktop
 
-    bitwarden-desktop
+    # wraps bitwarden-desktop but with SECURE_KEY_CONTAINER_BACKEND=keyctl in order to not block hibernation (would use secretmem)
+    # (this is fine since we have full disk encryption + secure boot)
+    (pkgs.symlinkJoin {
+      name = "bitwarden-desktop-with-keyctl";
+      paths = [ pkgs.bitwarden-desktop ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram "$out/bin/bitwarden" --set SECURE_KEY_CONTAINER_BACKEND keyctl
+      '';
+    })
+
     ente-auth
 
     obs-studio
