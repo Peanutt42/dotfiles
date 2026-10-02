@@ -1,6 +1,8 @@
 { config, ... }:
 
 {
+  caddy.privateServices."anki".port = config.services.anki-sync-server.port;
+
   sops.secrets."anki-sync-server/password".sopsFile = ../../../secrets/anki-sync-server.yaml;
 
   services.anki-sync-server = {

@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 let
-  # mainsail + moonraker are kind of weird to proxy over tailnet, so local only for now
-  localPiIp = "192.168.0.143";
   mainsailPort = 8084;
   moonrakerPort = 7125;
 in
@@ -25,6 +23,7 @@ in
 
   services.moonraker = {
     enable = true;
+    # only localhost, since it gets reverse proxied by caddy
     address = "127.0.0.1";
     port = moonrakerPort;
     settings.authorization = {
@@ -36,12 +35,15 @@ in
         "192.168.0.0/16"
         "FE80::/10"
         "::1/128"
+        # tailnet
         "100.64.0.0/10"
+        "fd7a:115c:a1e0::/48"
       ];
       cors_domains = [
         "*://my.mainsail.xyz"
         "*://*.local"
         "*://*.lan"
+        "*://mainsail.sh.peternhennig.de"
       ];
     };
   };
@@ -55,7 +57,7 @@ in
 
   networking.firewall.allowedTCPPorts = [ mainsailPort ];
 
-  services.caddy.virtualHosts."http://${localPiIp}:${toString mainsailPort}".extraConfig = ''
+  caddy.privateServices."mainsail".caddyConfig = ''
     encode zstd gzip
 
     @moonraker path /websocket /printer/* /api/* /access/* /machine/* /server/*

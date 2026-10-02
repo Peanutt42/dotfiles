@@ -2,7 +2,12 @@
   ...
 }:
 
+let
+  port = 17200;
+in
 {
+  caddy.privateServices."kosync".port = port;
+
   systemd.services.docker-kosync = {
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
@@ -14,7 +19,7 @@
     containers.kosync = {
       image = "koreader/kosync:latest";
 
-      ports = [ "17200:17200" ];
+      ports = [ "${toString port}:${toString port}" ];
 
       volumes = [
         "/var/lib/kosync/logs/app:/app/koreader-sync-server/logs"

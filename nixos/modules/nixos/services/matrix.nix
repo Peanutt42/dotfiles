@@ -2,7 +2,6 @@
 
 let
   baseDomain = "peternhennig.de";
-  matrixDomain = "matrix.${baseDomain}";
 in
 {
   services.postgresql.enable = true;
@@ -20,6 +19,26 @@ in
     owner = "matrix-synapse";
     mode = "0400";
   };
+
+  caddy.extraPublicDomainCaddyConfigs =
+    let
+      matrixWellKnownResponseServer = ''{"m.server":"matrix.peternhennig.de:443"}'';
+      matrixWellKnownResponseClient = ''{"m.homeserver":{"base_url":"https://matrix.peternhennig.de"}}'';
+    in
+    [
+      ''
+        # enables federation of matrix server from peternhennig.de -> matrix.peternhennig.de
+        handle /.well-known/matrix/server {
+          header Content-Type application/json
+          respond `${matrixWellKnownResponseServer}` 200
+        }
+        handle /.well-known/matrix/client {
+          header Content-Type application/json
+          header Access-Control-Allow-Origin *
+          respond `${matrixWellKnownResponseClient}` 200
+        }
+      ''
+    ];
 
   services.matrix-synapse = {
     enable = true;

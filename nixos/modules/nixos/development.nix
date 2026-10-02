@@ -8,6 +8,7 @@
 {
   options.development = {
     full = lib.mkOption {
+      type = lib.types.bool;
       default = true;
       description = "whether to include tools like ghc, hls, jdk, gradle, maven, etc.";
     };

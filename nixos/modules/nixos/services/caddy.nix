@@ -5,12 +5,27 @@
   ...
 }:
 
-# TODO: move from .extraConfig = '''' to using the provided types by the module
-# TODO: move the port settings for each service into a option that the service itself can specify
-
 {
   options.caddy = {
-    privateServices = lib.types.attrsOf lib.types.str;
+    privateServices = lib.mkOption {
+      type = lib.types.attrsOf (
+        lib.types.attrTag {
+          port = lib.mkOption {
+            type = lib.types.port;
+            description = "Local port to reverse proxy to.";
+          };
+          caddyConfig = lib.mkOption {
+            type = lib.types.lines;
+            description = "Raw Caddy configuration.";
+          };
+        }
+      );
+      description = "a map of subdomain names (subdomain.sh.peternhennig.de) to either a local port to reverse proxy or custom caddy config";
+    };
+    extraPublicDomainCaddyConfigs = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      description = "list of extra caddy configuration to inject into the base domain (peternhennig.de)";
+    };
   };
 
   config = {
@@ -24,20 +39,22 @@
 
     services.caddy =
       let
+        cfg = config.caddy;
         domain = "peternhennig.de";
         privateServicesDomain = "sh.${domain}"; # sh = self-hosted
-        privateServices = {
-          "adguard" = 3003;
-          "vault" = 8222;
-          "anki" = 27701;
-          "vikunja" = 3456;
-          "backrest" = 9898;
-          "kosync" = 17200;
-        };
-        handlePrivateService = name: port: ''
+        match =
+          value: cases:
+          let
+            tag = builtins.head (builtins.attrNames value);
+          in
+          cases.${tag} value.${tag};
+        handlePrivateService = name: portOrCaddyConfig: ''
           @${name} host ${name}.${privateServicesDomain}
           handle @${name} {
-            reverse_proxy 127.0.0.1:${toString port}
+          ${match portOrCaddyConfig {
+            port = port: "reverse_proxy 127.0.0.1:${toString port}";
+            caddyConfig = config: config;
+          }}
           }
         '';
       in
@@ -46,29 +63,15 @@
 
         virtualHosts = {
           # public site: portfolio (+ matrix feredation)
-          "http://${domain}:8080".extraConfig =
-            let
-              matrixWellKnownResponseServer = ''{"m.server":"matrix.peternhennig.de:443"}'';
-              matrixWellKnownResponseClient = ''{"m.homeserver":{"base_url":"https://matrix.peternhennig.de"}}'';
-            in
-            ''
-              bind 127.0.0.1
+          "http://${domain}:8080".extraConfig = ''
+            bind 127.0.0.1
 
-              # enables federation of matrix server from peternhennig.de -> matrix.peternhennig.de
-              handle /.well-known/matrix/server {
-                header Content-Type application/json
-                respond `${matrixWellKnownResponseServer}` 200
-              }
-              handle /.well-known/matrix/client {
-                header Content-Type application/json
-                header Access-Control-Allow-Origin *
-                respond `${matrixWellKnownResponseClient}` 200
-              }
+            ${lib.concatStrings cfg.extraPublicDomainCaddyConfigs}
 
-              root * /var/www/portfolio
-              file_server
-              encode gzip
-            '';
+            root * /var/www/portfolio
+            file_server
+            encode gzip
+          '';
 
           # public site: ASQ Raumreservierung (TODO: remove, this is done...)
           "http://raumreservierung.${domain}:8080".extraConfig = ''
@@ -85,7 +88,7 @@
               resolvers 1.1.1.1
             }
           ''
-          + lib.concatStrings (lib.mapAttrsToList handlePrivateService privateServices)
+          + lib.concatStrings (lib.mapAttrsToList handlePrivateService cfg.privateServices)
           + ''
             handle {
               abort

@@ -1,6 +1,8 @@
-{ ... }:
+{ config, ... }:
 
 {
+  caddy.privateServices."adguard".port = config.services.adguardhome.port;
+
   services.adguardhome = {
     enable = true;
 

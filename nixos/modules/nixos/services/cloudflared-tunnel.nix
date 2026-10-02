@@ -8,7 +8,7 @@
 {
   options.cloudflared-tunnel = {
     tunnelID = lib.mkOption {
-      type = lib.types.str;
+      type = lib.types.nonEmptyStr;
     };
   };
 

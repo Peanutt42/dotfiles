@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
+  caddy.privateServices."vault".port = config.services.vaultwarden.config.ROCKET_PORT;
+
   services.vaultwarden = {
     enable = true;
 

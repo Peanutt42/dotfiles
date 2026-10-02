@@ -1,6 +1,8 @@
-{ ... }:
+{ config, ... }:
 
 {
+  caddy.privateServices."vikunja".port = config.services.vikunja.port;
+
   services.vikunja = {
     enable = true;
     frontendScheme = "https";

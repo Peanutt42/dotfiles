@@ -7,16 +7,11 @@
 
 {
   options.restic = {
-    passwordFile = lib.mkOption {
-      type = lib.types.str;
-    };
-    rcloneOneDrivePath = lib.mkOption {
-      type = lib.types.str;
-    };
+    passwordFile = lib.mkOption { type = lib.types.nonEmptyStr; };
+    rcloneOneDrivePath = lib.mkOption { type = lib.types.nonEmptyStr; };
     services = lib.mkOption {
-      type = lib.types.attrsOf lib.types.str;
+      type = lib.types.attrsOf lib.types.nonEmptyStr;
       description = "maps systemdUnitNames to paths to backup";
-      default = { };
       example = {
         "systemdUnitName" = "/var/lib/systemdUnitName";
       };
@@ -28,6 +23,7 @@
       cfg = config.restic;
       systemdServiceUnits = lib.mapAttrsToList (systemdUnitName: _: systemdUnitName) cfg.services;
       serviceDataPaths = lib.mapAttrsToList (_: dataPath: dataPath) cfg.services;
+      backrestWebUiPort = 9898;
     in
     {
       environment.systemPackages = with pkgs; [
@@ -61,6 +57,7 @@
       };
 
       # web ui interface for restic
+      caddy.privateServices."backrest".port = backrestWebUiPort;
       systemd.services.backrest = {
         description = "Launch backrest to take care of backups";
         wantedBy = [ "default.target" ];
@@ -68,7 +65,7 @@
         script = "backrest";
         path = [ pkgs.backrest ];
         environment = {
-          BACKREST_PORT = "0.0.0.0:9898";
+          BACKREST_PORT = "0.0.0.0:${toString backrestWebUiPort}";
         };
         serviceConfig = {
           Type = "simple";
