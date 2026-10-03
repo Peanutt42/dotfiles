@@ -84,6 +84,9 @@
     includeFirmwareBuiltinKeys = true;
   };
 
+  # see ../../modules/nixos/boot-splash.nix
+  boot-splash.enable = true;
+
   # Enable audio enhancement for Framework Laptop 13
   hardware.framework.laptop13.audioEnhancement.rawDeviceName =
     lib.mkDefault "alsa_output.pci-0000_c1_00.6.analog-stereo";

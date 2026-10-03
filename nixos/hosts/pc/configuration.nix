@@ -41,6 +41,9 @@
     includeFirmwareBuiltinKeys = true;
   };
 
+  # see ../../modules/nixos/boot-splash.nix
+  boot-splash.enable = true;
+
   # SSH
   services.openssh = {
     enable = true;
