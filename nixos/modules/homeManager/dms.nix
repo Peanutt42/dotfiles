@@ -1,5 +1,23 @@
 { inputs, pkgs, ... }:
 
+let
+  mkAwwwDaemon =
+    namespace:
+    let
+      ns = if namespace != "" then " --namespace ${namespace}" else "";
+    in
+    {
+      Unit = {
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+      };
+      Install.WantedBy = [ "graphical-session.target" ];
+      Service = {
+        ExecStart = "${pkgs.awww}/bin/awww-daemon${ns}";
+        Restart = "on-failure";
+      };
+    };
+in
 {
   imports = [
     inputs.dms.homeModules.dank-material-shell
@@ -265,7 +283,7 @@
         peaceAndQuiet = "blue";
       };
       screenPreferences = {
-        wallpaper = [ "all" ];
+        wallpaper = [ ];
       };
       showWorkspaceApps = true;
       springBounce = 2;
@@ -330,5 +348,11 @@
     };
   };
 
-  home.packages = [ pkgs.dsearch ];
+  home.packages = with pkgs; [
+    dsearch
+    awww
+  ];
+
+  systemd.user.services.awww-daemon = mkAwwwDaemon "";
+  systemd.user.services.awww-backdrop = mkAwwwDaemon "backdrop";
 }
