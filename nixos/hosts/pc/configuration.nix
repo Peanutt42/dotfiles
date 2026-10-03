@@ -30,7 +30,16 @@
 
   networking.hostName = "peter-pc";
 
+  boot.initrd.luks.devices."luks-ed8bb8e6-65ba-4561-9c7d-fb0715d929e0".device =
+    "/dev/disk/by-uuid/ed8bb8e6-65ba-4561-9c7d-fb0715d929e0";
+
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  # see ../../modules/nixos/secure-boot.nix
+  secure-boot = {
+    enable = true;
+    includeFirmwareBuiltinKeys = true;
+  };
 
   # SSH
   services.openssh = {

@@ -7,6 +7,7 @@
 {
   imports = [
     ./sops.nix
+    ./secure-boot.nix # needs to be explicitly enabled
     ../../users/peter/nixos.nix
   ];
 

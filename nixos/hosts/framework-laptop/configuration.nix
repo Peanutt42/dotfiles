@@ -69,18 +69,6 @@
     SuspendState = "mem";
   };
 
-  # secure boot
-  boot.loader.systemd-boot.enable = lib.mkForce false; # lanzaboote replaces the systemd-boot module
-  boot.lanzaboote = {
-    enable = true;
-    autoEnrollKeys = {
-      enable = true;
-      includeFirmwareBuiltinKeys = true; # since its a framework laptop
-    };
-    autoGenerateKeys.enable = true;
-    pkiBundle = "/var/lib/sbctl";
-  };
-
   services.tlp.enable = false;
   services.power-profiles-daemon.enable = true;
 
@@ -88,6 +76,12 @@
     HandleLidSwitch = "suspend-then-hibernate";
     HandleLidSwitchExternalPower = "suspend";
     HandleLidSwitchDocked = "ignore";
+  };
+
+  # see ../../modules/nixos/secure-boot.nix
+  secure-boot = {
+    enable = true;
+    includeFirmwareBuiltinKeys = true;
   };
 
   # Enable audio enhancement for Framework Laptop 13
