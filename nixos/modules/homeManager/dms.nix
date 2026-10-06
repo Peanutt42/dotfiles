@@ -219,6 +219,28 @@ in
         theme = "Bibata-Modern-Classic";
       };
       customThemeFile = "/home/peter/.config/DankMaterialShell/themes/peaceAndQuiet/theme.json";
+      dashTabs = [
+        {
+          enabled = true;
+          id = "overview";
+        }
+        {
+          enabled = true;
+          id = "media";
+        }
+        {
+          enabled = false;
+          id = "wallpaper";
+        }
+        {
+          enabled = true;
+          id = "weather";
+        }
+        {
+          enabled = true;
+          id = "settings";
+        }
+      ];
       desktopClockCustomColor = {
         a = 1;
         b = 1;
@@ -257,8 +279,9 @@ in
       frameOpacity = 0.6;
       frameShowOnOverview = true;
       frameThickness = 2;
-      greeterWallpaperPath = "/home/peter/Pictures/nix-dark.png";
+      greeterWallpaperPath = "/home/peter/Projects/personal/dotfiles/nixos/wallpapers/greeter.png";
       iconThemeDark = "Adwaita";
+      lockScreenWallpaperPath = "/home/peter/Projects/personal/dotfiles/nixos/wallpapers/greeter.png";
       m3ElevationIntensity = 18;
       m3ElevationOpacity = 40;
       matugenScheme = "scheme-rainbow";
