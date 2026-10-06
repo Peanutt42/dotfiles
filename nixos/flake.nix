@@ -24,6 +24,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    dms-dcal = {
+      url = "github:AvengeMedia/dankcalendar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     git_progress_sync = {
       url = "github:Peanutt42/git_progress_sync";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -22,6 +22,7 @@ in
   imports = [
     inputs.dms.homeModules.dank-material-shell
     inputs.dms-plugin-registry.nixosModules.default
+    inputs.dms-dcal.homeModules.default
   ];
 
   programs.dank-material-shell = {
@@ -345,6 +346,59 @@ in
           ramUsageVisualStyle = "gauge";
         };
       };
+    };
+  };
+
+  programs.dank-calendar = {
+    enable = true;
+    systemd.enable = true;
+    # to get the new dank-calendar settings, run:
+    # DCAL_SETTINGS_JSON=(cat ~/.config/dankcal/ui-settings.json) nix eval --impure --expr "builtins.fromJSON (builtins.getEnv \"DCAL_SETTINGS_JSON\")"
+    settings = {
+      allDayReminderDaysBefore = 0;
+      allDayReminderTime = "09:00";
+      allDayReminders = false;
+      animationDuration = 250;
+      closeBehavior = "minimize";
+      colorSource = "auto";
+      coreHoursEnabled = false;
+      coreHoursEnd = 17;
+      coreHoursStart = 9;
+      customThemeFile = "";
+      defaultCalendarId = "";
+      defaultEventDurationMinutes = 30;
+      defaultReminderMinutes = 10;
+      dismissedAccountNotices = [ ];
+      enableRippleEffects = true;
+      firstDayOfWeek = -1;
+      focusRingColor = "primary";
+      focusRingEnabled = true;
+      focusRingWidth = 1.5;
+      fontScale = 1;
+      fontWeight = 400;
+      language = "";
+      lastView = "week";
+      monthEventTitleLines = 1;
+      monthShowAllEvents = false;
+      notificationSounds = true;
+      presetTheme = "purple";
+      radiusStrength = 50;
+      reduceMotion = false;
+      reminderPersist = true;
+      remindersEnabled = true;
+      showTasks = true;
+      showTrayIcon = true;
+      showWeekNumbers = false;
+      sidebarCollapsed = false;
+      sidebarWidth = 240;
+      snoozeMinutes = 5;
+      springBounce = 2;
+      syncIntervalMinutes = 15;
+      themeMode = "auto";
+      timeFormat = "24h";
+      timeLocale = "";
+      use24HourClock = true;
+      weekEventTitleLines = 1;
     };
   };
 
