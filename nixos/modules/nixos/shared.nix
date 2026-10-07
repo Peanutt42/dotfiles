@@ -62,6 +62,19 @@
 
   systemd.tmpfiles.rules = [ "L /dev/bielefeld - - - - /dev/null" ];
 
+  security.sudo.enable = false;
+  security.doas = {
+    enable = true;
+    extraRules = [
+      {
+        groups = [ "wheel" ];
+        keepEnv = true;
+        persist = true;
+      }
+    ];
+  };
+  environment.systemPackages = [ pkgs.doas-sudo-shim ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
