@@ -191,6 +191,9 @@ binds {
 	// Mod+B to spawn Zen Browser, Mod+Shift+B for inkognito
 	Mod+B { spawn "app.zen_browser.zen"; }
 	Mod+Shift+B { spawn "app.zen_browser.zen" "--private-window"; }
+
+	// screen-message
+	Mod+N { spawn-sh "sm --font=\"JetBrainsMono NFP\" --foreground=#ffffff --background=#000000"; }
 }
 
 include optional=true "pc_only.kdl"

@@ -75,6 +75,8 @@
 
     # 3d printing
     orca-slicer
+
+    screen-message
   ];
 
   programs.firefox.enable = true;
