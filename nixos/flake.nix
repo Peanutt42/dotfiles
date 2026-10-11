@@ -81,7 +81,8 @@
             config = {
               allowUnfree = true;
               permittedInsecurePackages = [
-                "idea-oss-2025.3.4" # jetbrains...
+                # jetbrains...
+                "intellij-idea-oss-2025.3.4"
               ];
             };
             overlays = [

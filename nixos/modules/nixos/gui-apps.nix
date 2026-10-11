@@ -77,6 +77,9 @@
     orca-slicer
 
     screen-message
+
+    # for uni
+    mysql-workbench
   ];
 
   programs.firefox.enable = true;
