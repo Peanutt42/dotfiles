@@ -16,15 +16,6 @@
     ];
   };
 
-  environment.etc."sddm.conf.d/hidpi.conf".text = ''
-    [General]
-    GreeterEnvironment=QT_SCREEN_SCALE_FACTORS=1.75,QT_FONT_DPI=192
-    inputs.
-
-    [Wayland]
-    EnableHiDPI=true
-  '';
-
   programs.silentSDDM = {
     enable = true;
     theme = "default";
