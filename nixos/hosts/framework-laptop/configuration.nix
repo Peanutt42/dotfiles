@@ -15,6 +15,7 @@
     ../../modules/nixos/sddm.nix
     ../../modules/nixos/apps.nix
     ../../modules/nixos/gui-apps.nix
+    ../../modules/nixos/uni-apps.nix
     ../../modules/nixos/development.nix
     ../../modules/nixos/ai-tools.nix
     ../../modules/nixos/gnupg.nix

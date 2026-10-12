@@ -31,12 +31,6 @@
 
     proton-vpn
 
-    p3x-onenote
-
-    (anki.withAddons [
-      pkgs.ankiAddons.review-heatmap
-    ])
-
     libreoffice
 
     gimp
@@ -56,7 +50,6 @@
     github-desktop
     gitkraken
     zed-editor
-    jetbrains.idea-oss
     vscode
 
     # cursor
@@ -68,18 +61,10 @@
     # icons
     tela-icon-theme
 
-    # cisco anyconnect vpn: uni-ulm
-    openconnect
-    networkmanager-openconnect
-    gp-saml-gui
-
     # 3d printing
     orca-slicer
 
     screen-message
-
-    # for uni
-    mysql-workbench
   ];
 
   programs.firefox.enable = true;

@@ -11,6 +11,7 @@
       "render"
       "docker"
       "greeter"
+      "wireshark"
     ];
     shell = pkgs.fish;
   };
