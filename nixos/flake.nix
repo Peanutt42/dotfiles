@@ -14,6 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
     dms = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -98,6 +100,7 @@
 
             home-manager.nixosModules.default
             inputs.lanzaboote.nixosModules.default
+            inputs.nix-flatpak.nixosModules.nix-flatpak
           ]
           ++ modules;
           specialArgs = { inherit inputs; };
