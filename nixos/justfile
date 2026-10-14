@@ -13,6 +13,6 @@ build_bwcloud_qcow2:
 	nix build .#bwcloud-qcow2 -o bwcloud-qcow2
 	@echo "qcow2 file is in ./bwcloud-qcow2/nixos.qcow2"
 
-# formats all .nix files with nixfmt
+# formats all .nix files, just not hardware-configuration.nix (auto-generated)
 fmt:
-	nixfmt ./**.nix
+	find . -type f -name '*.nix' ! -name 'hardware-configuration.nix' -exec nixfmt {} +
