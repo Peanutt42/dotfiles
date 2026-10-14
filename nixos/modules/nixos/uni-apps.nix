@@ -4,6 +4,8 @@
   environment.systemPackages = with pkgs; [
     p3x-onenote
 
+    mattermost-desktop
+
     (anki.withAddons [
       pkgs.ankiAddons.review-heatmap
     ])
