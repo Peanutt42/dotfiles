@@ -72,7 +72,6 @@
     }@inputs:
     let
       tmux-fork-overlay = import ./overlays/tmux-fork.nix;
-      gwq-overlay = import ./overlays/gwq.nix;
 
       mkSystem =
         { system, modules }:
@@ -90,7 +89,6 @@
             overlays = [
               tmux-fork-overlay
               inputs.git_progress_sync.overlays.default
-              gwq-overlay
               inputs.tmux-sessionizer.overlays.default
               inputs.oniri.overlays.default
             ];
