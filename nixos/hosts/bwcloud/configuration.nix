@@ -13,6 +13,7 @@
     ../../modules/nixos/apps.nix
     ../../modules/nixos/development.nix
     ../../modules/nixos/services/cloudflared-tunnel.nix
+    ../../modules/nixos/services/caddy.nix
     ../../modules/nixos/services/restic.nix
     ../../modules/nixos/services/onedrive-rclone.nix
     ../../modules/nixos/services/uptime-kuma.nix
@@ -30,6 +31,8 @@
     };
   };
 
+  # see ../../modules/nixos/services/matrix.nix
+  matrix.enable = true;
   # see ../../modules/development.nix
   development.full = false;
   # see ../../modules/services/cloudflared-tunnel.nix

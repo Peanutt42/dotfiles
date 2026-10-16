@@ -22,6 +22,7 @@
     ../../modules/nixos/services/onedrive-rclone.nix
     ../../modules/nixos/services/cloudflared-tunnel.nix
     ../../modules/nixos/services/kosync.nix
+    ../../modules/nixos/services/matrix.nix
   ];
 
   home-manager = {
@@ -55,6 +56,9 @@
       PermitRootLogin = "yes";
     };
   };
+
+  # see ../../modules/nixos/services/caddy.nix
+  caddy.enable = true;
 
   # see ../../modules/development.nix
   development.full = false;
