@@ -21,10 +21,12 @@
           };
         }
       );
+      default = { };
       description = "a map of subdomain names (subdomain.sh.peternhennig.de) to either a local port to reverse proxy or custom caddy config";
     };
     extraPublicDomainCaddyConfigs = lib.mkOption {
       type = lib.types.listOf lib.types.str;
+      default = [ ];
       description = "list of extra caddy configuration to inject into the base domain (peternhennig.de)";
     };
   };

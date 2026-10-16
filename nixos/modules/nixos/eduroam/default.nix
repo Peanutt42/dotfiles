@@ -100,7 +100,7 @@ in
       "f /etc/NetworkManager/system-connections/eduroam.nmconnection 600"
     ];
 
-    systemd.services.eduroam-configure = lib.mergeAttrs {
+    systemd.services.eduroam-configure = lib.recursiveUpdate {
       enable = true;
       description = "eduroam auto-config";
       before = [ "network-pre.target" ];
