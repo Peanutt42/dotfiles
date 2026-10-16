@@ -9,7 +9,7 @@ return {
 				"vim", "vimdoc", "query", "regex", "latex", "yaml", "markdown",
 				"markdown_inline",
 				"bash", "fish", "diff",
-				"c", "cpp", "lua", "luadoc", "rust", "vhdl", "haskell",
+				"c", "cpp", "lua", "luadoc", "rust", "vhdl", "haskell", "wgsl",
 				"java", "nix", "just", "typst",
 				"javascript", "typescript", "tsx", "html", "css",
 			}
