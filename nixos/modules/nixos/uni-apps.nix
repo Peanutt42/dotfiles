@@ -27,6 +27,9 @@
 
     renderdoc
 
+    godot_4_7
+    blender
+
     wireshark # gui
 
     # cisco anyconnect vpn: uni-ulm
