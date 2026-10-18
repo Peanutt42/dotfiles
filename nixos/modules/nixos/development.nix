@@ -71,17 +71,6 @@
         cargo-tauri
         sqlx-cli
         trunk
-
-        typst
-        typstyle
-        typst-live
-        tinymist
-
-        # haskell
-        ghc
-        cabal-install
-        haskell-language-server
-        hlint
       ];
 
     programs.java = {

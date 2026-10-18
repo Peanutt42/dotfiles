@@ -12,7 +12,20 @@
 
     jetbrains.idea-oss
 
+    typst
+    typstyle
+    typst-live
+    tinymist
+
+    # haskell
+    ghc
+    cabal-install
+    haskell-language-server
+    hlint
+
     mysql-workbench
+
+    renderdoc
 
     wireshark # gui
 
