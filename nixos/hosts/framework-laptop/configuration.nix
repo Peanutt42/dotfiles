@@ -50,7 +50,11 @@
   services.fwupd.enable = true;
 
   hardware.enableRedistributableFirmware = true;
-  hardware.framework.enableKmod = true;
+  # TEMPORARY!
+  # Change to true again once kmod does not have that
+  # "cat: extra/framework_laptop.ko.cer: No such file or directory"
+  # error, once the fix is merged with nixpkgs-unstable
+  hardware.framework.enableKmod = false;
 
   # Fingerprint sensor
   services.fprintd.enable = true;

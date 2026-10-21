@@ -28,6 +28,10 @@ in
   programs.dank-material-shell = {
     enable = true;
 
+    # TEMPORARY!
+    # should be removed once khal builds successfully when building its man pages
+    enableCalendarEvents = false;
+
     systemd = {
       enable = true; # Systemd service for auto-start
       restartIfChanged = true; # Auto-restart dms.service when dms-shell changes
