@@ -6,6 +6,7 @@ local config = wezterm.config_builder()
 config.color_scheme = 'Kitty Default'
 
 config.font = wezterm.font('JetBrainsMono Nerd Font', { weight = 'Bold' })
+config.adjust_window_size_when_changing_font_size = false
 
 config.default_cursor_style = "BlinkingBar"
 config.cursor_blink_rate = 600
@@ -13,7 +14,30 @@ config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 
 config.window_background_opacity = 0.9
+config.window_padding = {
+	left = '0',
+	right = '1.25cell',
+	top = '0',
+	bottom = '0',
+}
 config.wayland_window_background_blur = true
+
+-- default values:
+config.tiling_desktop_environments = {
+	'X11 LG3D',
+	'X11 bspwm',
+	'X11 i3',
+	'X11 dwm',
+}
+if os.getenv("XDG_SESSION_DESKTOP") == "niri" then
+	-- see "Window Environment: Wayland" on debug_overlay (Ctrl+Shift+L)
+	table.insert(config.tiling_desktop_environments, 'Wayland')
+end
+-- because we have the tabs on the bottom
+config.window_content_alignment = {
+	horizontal = 'Left',
+	vertical = 'Bottom',
+}
 
 config.max_fps = 144
 config.animation_fps = 144
