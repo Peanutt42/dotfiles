@@ -8,7 +8,7 @@
     wl-clipboard # needed by tmux-yank
 
     thunderbird
-    zapzap
+    zapfast
     signal-desktop
     slack
     vesktop
