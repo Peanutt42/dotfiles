@@ -60,6 +60,11 @@
       url = "github:nix-community/lanzaboote/v1.2.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    serein = {
+      url = "github:ViceVerse-cz/Serein";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

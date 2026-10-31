@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -11,7 +11,7 @@
     zapfast
     signal-desktop
     slack
-    vesktop
+    inputs.serein.packages.${pkgs.stdenv.hostPlatform.system}.default # serein is a native client for discord
     element-desktop
 
     # wraps bitwarden-desktop but with SECURE_KEY_CONTAINER_BACKEND=keyctl in order to not block hibernation (would use secretmem)

@@ -160,6 +160,27 @@
     },
     "flake-parts": {
       "inputs": {
+        "nixpkgs-lib": [
+          "serein",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788450739,
+        "narHash": "sha256-glZLQlzIn1fXH6PazR2iUmTo7kzzyYSshrWhLS9TqCU=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "31729ca8cbdb4fa927b34e5f4353e6a83f39e993",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
+      "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
@@ -417,6 +438,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "oniri": "oniri",
+        "serein": "serein",
         "silentSDDM": "silentSDDM",
         "sops-nix": "sops-nix",
         "tmux-sessionizer": "tmux-sessionizer"
@@ -479,6 +501,27 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "serein": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793116688,
+        "narHash": "sha256-eq5gpLBtKGGtzZQO5uKDblaSfRJWUhVI1/l7cEgCzjM=",
+        "owner": "ViceVerse-cz",
+        "repo": "Serein",
+        "rev": "1b2f8942910436f9a488a0cf0f806776f02a074f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ViceVerse-cz",
+        "repo": "Serein",
         "type": "github"
       }
     },
@@ -555,7 +598,7 @@
     "tmux-sessionizer": {
       "inputs": {
         "crane": "crane_2",
-        "flake-parts": "flake-parts",
+        "flake-parts": "flake-parts_2",
         "nixpkgs": [
           "nixpkgs"
         ],
