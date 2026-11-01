@@ -65,17 +65,58 @@ config.colors = {
 		}
 	},
 }
+-- 🏳️‍🌈
+local gay = true
+local prideflag_colors = {
+	"#670101",
+	"#733F00",
+	"#736A00",
+	"#003912",
+	"#003673",
+	"#33133A"
+}
+local prideflag_colors_hovered = {
+	"#AB0202",
+	"#BF6900",
+	"#BFB200",
+	"#00601D",
+	"#0039BF",
+	"#57206E"
+}
+-- see <https://www.flagcolorcodes.com/pride-rainbow>
+local prideflag_colors_active = {
+	"#E40303",
+	"#FF8C00",
+	"#FFED00",
+	"#008026",
+	"#004CFF",
+	"#732982"
+}
 wezterm.on("format-tab-title", function(tab, --[[tabs]] _, --[[panes]] _, --[[config]] _, hover, max_width)
 	local tab_bg = tab_bar_bg
 	local tab_fg = "#babec4"
 	local terminal_bg = "#050505"
 
-	if tab.is_active then
-		tab_bg = "#f0b72f"
-		tab_fg = "#050505"
-	elseif hover then
-		tab_bg = inactive_tab_hovered_bg
-		tab_fg = inactive_tab_hovered_fg
+	if gay then
+		-- tab_index is 0 based, lua is 1 based...
+		local color_index = (tab.tab_index % #prideflag_colors_active) + 1
+		if tab.is_active then
+			tab_bg = prideflag_colors_active[color_index]
+			tab_fg = color_index == 3 and "#000000" or "#ffffff"
+		elseif hover then
+			tab_bg = prideflag_colors_hovered[color_index]
+			tab_fg = "#ffffff"
+		else
+			tab_bg = prideflag_colors[color_index]
+		end
+	else
+		if tab.is_active then
+			tab_bg = "#f0b72f"
+			tab_fg = "#050505"
+		elseif hover then
+			tab_bg = inactive_tab_hovered_bg
+			tab_fg = inactive_tab_hovered_fg
+		end
 	end
 
 	-- 1 cell for a padding space between the tabs
