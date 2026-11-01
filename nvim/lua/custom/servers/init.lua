@@ -12,6 +12,10 @@ return {
 	-- defaults to nil, meaning the mason lsp server name will be used for vim.lsp name as well
 	lsp_name_override = nil,
 
+	-- a callback that gets called when the lsp server gets registered
+	-- useful for registering extra filetypes
+	register_callback = nil,
+
 	-- the rest is just `vim.lsp.Config`
 	settings = {
 		xyz = {
@@ -25,6 +29,7 @@ return {
 ---@class ServerConfig: vim.lsp.Config
 ---@field mason_ensure_installed? boolean
 ---@field lsp_name_override? string
+---@field register_callback? fun()
 
 ---@class ServerConfigs
 ---@field mason_ensure_installed string[]
@@ -57,6 +62,10 @@ for _, file in ipairs(vim.fn.glob(servers_dir .. "/*.lua", false, true)) do
 		local lsp_config = server_config --[[@as vim.lsp.Config]]
 
 		server_configs.lsp_configs[lsp_name] = lsp_config
+
+		if server_config.register_callback ~= nil then
+			server_config.register_callback()
+		end
 	end
 end
 
