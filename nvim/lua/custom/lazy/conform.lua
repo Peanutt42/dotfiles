@@ -34,6 +34,17 @@ return {
 			css = { "prettier" },
 			html = { "prettier" },
 			json = { "prettier" },
+			wgsl = { "wgslfmt", lsp_format = "never" },
+			wesl = { "wgslfmt", lsp_format = "never" }
+		},
+		formatters = {
+			wgslfmt = {
+				-- wgslfmt does have a stdin mode using the "-" arg, however it is not though through fully.
+				-- since stdin has no file extension, wgslfmt assumes wgsl so wesl files cannot be formatted correctly
+				command = "wgslfmt",
+				args = { "$FILENAME", "--tabs" },
+				stdin = false,
+			},
 		},
 	},
 	config = function(_, opts)
