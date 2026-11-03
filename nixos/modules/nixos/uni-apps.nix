@@ -24,6 +24,8 @@
     hlint
 
     mysql-workbench
+    beekeeper-studio
+    mysql84
 
     renderdoc
 

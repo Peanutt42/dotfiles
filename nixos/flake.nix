@@ -89,6 +89,8 @@
               permittedInsecurePackages = [
                 # jetbrains...
                 "intellij-idea-oss-2025.3.4"
+                # electron EOL...
+                "beekeeper-studio-6.1.4"
               ];
             };
             overlays = [
