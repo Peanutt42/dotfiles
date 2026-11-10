@@ -36,11 +36,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    silentSDDM = {
-      url = "github:uiriansan/SilentSDDM";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -6,7 +6,7 @@
     ../../modules/nixos/desktop.nix
     ../../modules/nixos/niri.nix
     ../../modules/nixos/gnome.nix
-    ../../modules/nixos/sddm.nix
+    ../../modules/nixos/login-manager.nix
     ../../modules/nixos/apps.nix
     ../../modules/nixos/gui-apps.nix
     ../../modules/nixos/uni-apps.nix
