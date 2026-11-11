@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  pkgs,
   ...
 }:
 
@@ -12,8 +13,8 @@
     ../../modules/nixos/desktop.nix
     ../../modules/nixos/niri.nix
     ../../modules/nixos/gnome.nix
-    ../../modules/nixos/sddm.nix
     ../../modules/nixos/login-manager.nix
+    ../../modules/nixos/apps.nix
     ../../modules/nixos/gui-apps.nix
     ../../modules/nixos/uni-apps.nix
     ../../modules/nixos/flatpak.nix
@@ -83,6 +84,9 @@
     HandleLidSwitchExternalPower = "suspend";
     HandleLidSwitchDocked = "ignore";
   };
+
+  services.displayManager.ly.settings.start_cmd = "brightnessctl set 50%";
+  environment.systemPackages = [ pkgs.brightnessctl ];
 
   # see ../../modules/nixos/secure-boot.nix
   secure-boot = {
