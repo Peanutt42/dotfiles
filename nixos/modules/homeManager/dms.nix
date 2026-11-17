@@ -685,7 +685,7 @@ in
   };
 
   home.packages = with pkgs; [
-    dsearch
+    dux-search
     awww
   ];
 

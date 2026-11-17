@@ -10,8 +10,6 @@
       pkgs.ankiAddons.review-heatmap
     ])
 
-    jetbrains.idea-oss
-
     typst
     typstyle
     typst-live
