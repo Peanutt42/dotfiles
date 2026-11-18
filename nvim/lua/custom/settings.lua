@@ -6,7 +6,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.cmd('syntax on')
 vim.o.termguicolors = true
-vim.o.scrolloff = 10
+vim.o.scrolloff = 5
 vim.o.sidescrolloff = 10
 vim.o.wrap = false
 vim.o.cursorline = true
@@ -46,4 +46,4 @@ vim.opt.guicursor = {
 }
 
 -- enable transparency
-vim.g.transparent_enabled = true
+vim.g.transparent_enabled = false
