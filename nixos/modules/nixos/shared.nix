@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -77,6 +77,9 @@
     ];
   };
   environment.systemPackages = [ pkgs.doas-sudo-shim ];
+
+  # because of nginx2shell: just so i never accedentially import a module that uses nginx
+  services.nginx.enable = lib.mkForce false;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
