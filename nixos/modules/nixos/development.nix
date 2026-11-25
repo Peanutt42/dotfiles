@@ -64,7 +64,7 @@
         sops
       ]
       ++ lib.optionals (config.development.full) [
-        jdk21
+        jdk25
         maven
         gradle
 
